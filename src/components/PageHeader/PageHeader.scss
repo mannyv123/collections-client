@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+
+    border-bottom: 1px solid black; //temporary
+
+    &__logo {
+        padding: 1rem;
+    }
+}
+
+.nav {
+    &__list {
+        list-style-type: none;
+        display: flex;
+    }
+
+    &__item {
+        padding: 1rem;
+        cursor: pointer;
+    }
+}
