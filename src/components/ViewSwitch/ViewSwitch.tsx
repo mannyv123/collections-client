@@ -1,9 +1,11 @@
-import { useState } from "react";
 import "./ViewSwitch.scss";
 
-function ViewSwitch(): JSX.Element {
-    const [map, setMap] = useState<boolean>(true);
+interface ViewSwitchProps {
+    map: boolean;
+    setMap(map: boolean): void;
+}
 
+function ViewSwitch({ map, setMap }: ViewSwitchProps): JSX.Element {
     return (
         <label htmlFor="view" className="switch">
             Map or List View

@@ -1,12 +1,10 @@
-import MapBox from "../../components/MapBox/MapBox";
-import ViewSwitch from "../../components/ViewSwitch/ViewSwitch";
+import ViewCollections from "../../components/ViewCollections/ViewCollections";
 import "./LandingPage.scss";
 
 function LandingPage(): JSX.Element {
     return (
         <section>
-            <ViewSwitch />
-            <MapBox />
+            <ViewCollections />
         </section>
     );
 }
