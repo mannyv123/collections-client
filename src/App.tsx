@@ -1,12 +1,13 @@
 import "./App.scss";
-import MapBox from "./components/MapBox/MapBox";
+
 import PageHeader from "./components/PageHeader/PageHeader";
+import LandingPage from "./pages/LandingPage/LandingPage";
 
 function App() {
     return (
         <div className="App">
             <PageHeader />
-            <MapBox />
+            <LandingPage />
         </div>
     );
 }
