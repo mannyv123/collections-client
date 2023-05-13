@@ -1,9 +1,11 @@
 import { useRef } from "react";
 import "./PageHeader.scss";
 import LoginModal from "../LoginModal/LoginModal";
+import SignUpModal from "../SignUpModal/SignUpModal";
 
 function PageHeader(): JSX.Element {
     const loginDialogRef = useRef<HTMLDialogElement>(null);
+    const signUpDialogRef = useRef<HTMLDialogElement>(null);
 
     return (
         <>
@@ -21,12 +23,20 @@ function PageHeader(): JSX.Element {
                         >
                             Login
                         </li>
-                        <li className="nav__item">Sign Up</li>
+                        <li
+                            onClick={() => {
+                                signUpDialogRef.current?.showModal();
+                            }}
+                            className="nav__item"
+                        >
+                            Sign Up
+                        </li>
                         <li className="nav__item">Logout</li>
                     </ul>
                 </nav>
             </header>
             <LoginModal loginDialogRef={loginDialogRef} />
+            <SignUpModal signUpDialogRef={signUpDialogRef} />
         </>
     );
 }
