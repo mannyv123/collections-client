@@ -13,7 +13,7 @@ function MapBox(): JSX.Element {
                     longitude: -122.4,
                     zoom: 2,
                 }}
-                style={{ width: "100vw", height: "95vh" }}
+                style={{ width: "100vw", height: "93.5vh" }}
                 mapStyle="mapbox://styles/mapbox/light-v11"
                 mapboxAccessToken={MAPBOX_TOKEN}
                 projection="globe"

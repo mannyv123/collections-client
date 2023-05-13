@@ -3,9 +3,9 @@ import "./LandingPage.scss";
 
 function LandingPage(): JSX.Element {
     return (
-        <section>
+        <main>
             <ViewCollections />
-        </section>
+        </main>
     );
 }
 
