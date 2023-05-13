@@ -1,4 +1,11 @@
 .switch {
+    position: absolute;
+    z-index: 1;
+    top: 5%;
+    right: 5%;
+
+    cursor: pointer;
+
     &__container {
         background-color: grey;
         width: 4rem;
