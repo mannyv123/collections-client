@@ -44,7 +44,11 @@ function CreateProfile({ setSignUpStep }: CreateProfileProps): JSX.Element {
                 >
                     Back
                 </button>
-                <button type="button" className="create-profile__btn">
+                <button
+                    type="button"
+                    onClick={() => setSignUpStep("profileImage")}
+                    className="create-profile__btn"
+                >
                     Next
                 </button>
             </div>

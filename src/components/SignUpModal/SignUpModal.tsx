@@ -2,6 +2,7 @@ import { RefObject, useState } from "react";
 import "./SignUpModal.scss";
 import CreateAccount from "../CreateAccount/CreateAccount";
 import CreateProfile from "../CreateProfile/CreateProfile";
+import CreateProfileImages from "../CreateProfileImages/CreateProfileImages";
 
 interface SignUpModalProps {
     signUpDialogRef: RefObject<HTMLDialogElement>;
@@ -26,6 +27,7 @@ function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
                 <form action="submit" className="signup__form">
                     {signUpStep === "account" && <CreateAccount setSignUpStep={setSignUpStep} />}
                     {signUpStep === "profile" && <CreateProfile setSignUpStep={setSignUpStep} />}
+                    {signUpStep === "profileImage" && <CreateProfileImages setSignUpStep={setSignUpStep} />}
                 </form>
             </div>
         </dialog>
