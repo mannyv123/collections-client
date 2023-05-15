@@ -1,0 +1,35 @@
+.switch {
+    position: absolute;
+    z-index: 1;
+    top: 5%;
+    right: 5%;
+
+    cursor: pointer;
+
+    &__container {
+        // background-color: grey;
+        width: 4rem;
+        // height: 2rem;
+        border: 1px solid black;
+        border-radius: 1.5rem;
+        padding: 0.25rem;
+
+        display: flex;
+        justify-content: flex-start;
+
+        &--list {
+            justify-content: flex-end;
+        }
+    }
+
+    &__item {
+        background-color: red;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 50%;
+    }
+
+    &__input {
+        display: none;
+    }
+}
