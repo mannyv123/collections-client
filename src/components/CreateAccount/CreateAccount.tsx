@@ -1,9 +1,13 @@
 import "./CreateAccount.scss";
 
-function CreateAccount(): JSX.Element {
+interface CreateAccountProps {
+    setSignUpStep(step: string): void;
+}
+
+function CreateAccount({ setSignUpStep }: CreateAccountProps): JSX.Element {
     return (
         <div className="create-account">
-            <h2 className="create-account__title">Create Account</h2>
+            <h2 className="create-account__title">Create an Account</h2>
             <div className="create-account__form-inputs">
                 <input
                     type="text"
@@ -33,7 +37,11 @@ function CreateAccount(): JSX.Element {
                     placeholder="Enter your email"
                     className="create-account__input"
                 />
-                <button type="button" className="create-account__next">
+                <button
+                    type="button"
+                    className="create-account__next"
+                    onClick={() => setSignUpStep("profile")}
+                >
                     Next
                 </button>
             </div>
