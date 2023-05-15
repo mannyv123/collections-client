@@ -1,6 +1,11 @@
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
 import "./ProfilePage.scss";
+import ViewCollections from "../../components/ViewCollections/ViewCollections";
 
 function ProfilePage(): JSX.Element {
+    const [view, setView] = useState<string>("map");
+
     return (
         <section className="profile">
             <div className="profile__header">
@@ -18,6 +23,7 @@ function ProfilePage(): JSX.Element {
                 {/* Map */}
                 {/* Gallery */}
                 {/* About */}
+                <Outlet />
             </div>
         </section>
     );

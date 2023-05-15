@@ -11,15 +11,15 @@ function CreateAccount({ setSignUpStep }: CreateAccountProps): JSX.Element {
             <div className="create-account__form-inputs">
                 <input
                     type="text"
-                    name="username"
-                    id="username"
+                    name="setUsername"
+                    id="setUsername"
                     placeholder="Create a username"
                     className="create-account__input"
                 />
                 <input
                     type="password"
-                    name="password"
-                    id="password"
+                    name="setPassword"
+                    id="setPassword"
                     placeholder="Set a password"
                     className="create-account__input"
                 />
