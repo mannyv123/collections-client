@@ -1,0 +1,27 @@
+.profile {
+    &__header {
+        width: 100%;
+        height: 25vh;
+    }
+
+    &__cover-img {
+        background-color: lightblue; //temporary
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+    }
+
+    &__img {
+        width: 9rem;
+        height: 9rem;
+        background-color: lightgray; //temporary
+        border-radius: 50%;
+    }
+
+    &__sub-nav {
+        list-style-type: none;
+        display: flex;
+        border-bottom: 1px solid black;
+    }
+}
