@@ -34,15 +34,43 @@
     }
 
     &__sub-nav {
-        list-style-type: none;
         display: flex;
+        justify-content: space-between;
+        // flex-direction: row;
         border-bottom: 1px solid black;
-
+        // width: 100%;
         padding: 0 3rem;
     }
 
+    &__sub-nav-list {
+        list-style-type: none;
+        display: flex;
+    }
+
     &__nav-item {
+        padding: 1rem 0;
+    }
+
+    &__nav-link {
         padding: 1rem 2rem;
+        text-decoration: none;
+
+        &:hover {
+            background-color: lightcyan; //temporary
+        }
+    }
+
+    &__add-collection {
+        width: 10rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        &:hover {
+            cursor: pointer;
+            background-color: lightcyan; //temporary
+        }
     }
 
     // &__content {
