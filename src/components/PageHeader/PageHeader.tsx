@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import "./PageHeader.scss";
 import LoginModal from "../LoginModal/LoginModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
@@ -10,16 +11,26 @@ function PageHeader(): JSX.Element {
     return (
         <>
             <header className="header">
-                <div className="header__logo">COLLECTIONS</div>
+                <Link to="/" className="header__logo">
+                    COLLECTIONS
+                </Link>
                 <nav className="nav">
                     <ul className="nav__list">
-                        <li className="nav__item">Home</li>
-                        <li className="nav__item">My Profile</li>
+                        <li className="nav__item">
+                            <Link className="nav__link" to="/">
+                                Home
+                            </Link>
+                        </li>
+                        <li className="nav__item">
+                            <Link className="nav__link" to="/:userId/map">
+                                My Profile
+                            </Link>
+                        </li>
                         <li
                             onClick={() => {
                                 loginDialogRef.current?.showModal();
                             }}
-                            className="nav__item"
+                            className="nav__item nav__item--modal"
                         >
                             Login
                         </li>
@@ -27,11 +38,12 @@ function PageHeader(): JSX.Element {
                             onClick={() => {
                                 signUpDialogRef.current?.showModal();
                             }}
-                            className="nav__item"
+                            className="nav__item nav__item--modal"
                         >
                             Sign Up
                         </li>
-                        <li className="nav__item">Logout</li>
+                        {/* Will need to update scss for logout */}
+                        <li className="nav__item nav__item--modal">Logout</li>
                     </ul>
                 </nav>
             </header>
