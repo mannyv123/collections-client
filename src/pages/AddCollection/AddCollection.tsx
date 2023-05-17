@@ -7,7 +7,12 @@ function AddCollection(): JSX.Element {
             <h1 className="add__title">Add a Collection</h1>
             <div className="add__container">
                 <form action="submit" className="add__form">
-                    <h3 className="add__sub-title">Add Collection Details</h3>
+                    <div className="add__header">
+                        <h3 className="add__sub-title">Add Collection Details</h3>
+                        <button type="submit" className="add__create-btn">
+                            Create Collection
+                        </button>
+                    </div>
                     <label htmlFor="title">Title:</label>
                     <input
                         type="text"
