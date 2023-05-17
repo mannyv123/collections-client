@@ -30,7 +30,7 @@ function PageHeader(): JSX.Element {
                             onClick={() => {
                                 loginDialogRef.current?.showModal();
                             }}
-                            className="nav__item"
+                            className="nav__item nav__item--modal"
                         >
                             Login
                         </li>
@@ -38,11 +38,12 @@ function PageHeader(): JSX.Element {
                             onClick={() => {
                                 signUpDialogRef.current?.showModal();
                             }}
-                            className="nav__item"
+                            className="nav__item nav__item--modal"
                         >
                             Sign Up
                         </li>
-                        <li className="nav__item">Logout</li>
+                        {/* Will need to update scss for logout */}
+                        <li className="nav__item nav__item--modal">Logout</li>
                     </ul>
                 </nav>
             </header>
