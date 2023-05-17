@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import "./PageHeader.scss";
 import LoginModal from "../LoginModal/LoginModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
@@ -10,11 +11,21 @@ function PageHeader(): JSX.Element {
     return (
         <>
             <header className="header">
-                <div className="header__logo">COLLECTIONS</div>
+                <Link to="/" className="header__logo">
+                    COLLECTIONS
+                </Link>
                 <nav className="nav">
                     <ul className="nav__list">
-                        <li className="nav__item">Home</li>
-                        <li className="nav__item">My Profile</li>
+                        <li className="nav__item">
+                            <Link className="nav__link" to="/">
+                                Home
+                            </Link>
+                        </li>
+                        <li className="nav__item">
+                            <Link className="nav__link" to="/:userId/map">
+                                My Profile
+                            </Link>
+                        </li>
                         <li
                             onClick={() => {
                                 loginDialogRef.current?.showModal();
