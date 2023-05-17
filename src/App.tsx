@@ -6,10 +6,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import ViewCollections from "./components/ViewCollections/ViewCollections";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import AboutUser from "./components/AboutUser/AboutUser";
-
-const Test = () => {
-    return <div>Hello</div>;
-};
+import AddCollection from "./pages/AddCollection/AddCollection";
 
 function App(): JSX.Element {
     return (
@@ -24,6 +21,7 @@ function App(): JSX.Element {
                         <Route path="/:userId/gallery" element={<ImageGallery />} />
                         <Route path="/:userId/about" element={<AboutUser />} />
                     </Route>
+                    <Route path="/:userId/add" element={<AddCollection />} />
                 </Routes>
             </BrowserRouter>
         </div>

@@ -1,0 +1,28 @@
+.add {
+    padding: 1rem 3rem;
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__input {
+        font-size: 1rem;
+        border-radius: 1rem;
+        border: 1px solid black;
+        padding: 0.5rem;
+        width: 40%;
+
+        &--textarea {
+            height: 10rem;
+            resize: none;
+            margin-bottom: 2rem;
+        }
+    }
+
+    &__images-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+}

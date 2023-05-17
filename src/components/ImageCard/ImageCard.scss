@@ -1,0 +1,22 @@
+.img-card {
+    flex: 0 0 32.3%;
+    border: 1px solid black;
+    aspect-ratio: 16/9;
+
+    padding: 0.5rem;
+    border-radius: 1rem;
+
+    &__image {
+        background-color: lightgray; //temporary
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+
+    &__input {
+        font-size: 1rem;
+        border-radius: 1rem;
+        border: 1px solid black;
+        padding: 0.5rem;
+        width: 100%;
+    }
+}
