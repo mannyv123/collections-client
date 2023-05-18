@@ -1,0 +1,15 @@
+.collection {
+    display: flex;
+    flex-direction: column;
+
+    &__details-container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__analytics {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}

@@ -1,0 +1,11 @@
+.list-view {
+    padding: 3rem 3rem;
+    height: 93.5vh;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+
+        margin-top: 5rem;
+    }
+}
