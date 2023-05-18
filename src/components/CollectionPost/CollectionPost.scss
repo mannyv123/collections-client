@@ -1,7 +1,17 @@
 .collection {
     display: flex;
     flex-direction: column;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+    gap: 1rem;
+    // flex: 1 1;
+    // width: 30%;
+    // min-width: 20rem;
 
+    // background: linear-gradient(#d3d3d300, #d3d3d3);
+
+    overflow: hidden;
     &__details-container {
         display: flex;
         justify-content: space-between;
@@ -11,5 +21,23 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+
+    &__img-container {
+        display: flex;
+        gap: 0.5rem;
+        overflow: auto;
+        scroll-snap-type: x mandatory;
+        border-radius: 1rem;
+    }
+
+    &__img {
+        background-color: lightgreen;
+        width: 20rem;
+        height: 10rem;
+        object-fit: contain;
+        border-radius: 1rem;
+        scroll-snap-align: start;
+        // border: 1px solid black;
     }
 }

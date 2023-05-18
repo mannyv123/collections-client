@@ -5,7 +5,7 @@ import MapBox from "../MapBox/MapBox";
 import ListView from "../ListView/ListView";
 
 function ViewCollections(): JSX.Element {
-    const [map, setMap] = useState<boolean>(true);
+    const [map, setMap] = useState<boolean>(false);
     return (
         <div className="view-collections">
             <ViewSwitch map={map} setMap={setMap} />
