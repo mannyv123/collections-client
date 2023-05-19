@@ -3,8 +3,8 @@
     flex-direction: column;
     border: 1px solid black;
     border-radius: 1rem;
-    padding: 1rem;
-    gap: 1rem;
+    // padding: 1rem;
+    // gap: 1rem;
     // flex: 1 1;
     // width: 30%;
     // min-width: 20rem;
@@ -13,15 +13,46 @@
 
     overflow: hidden;
 
+    // width: 20rem;
+    height: 13rem;
+
+    filter: grayscale(0.4);
+
+    &:hover {
+        filter: grayscale(0);
+    }
+
+    &__bg-image {
+        width: 100%;
+        height: 100%;
+
+        padding: 1rem;
+
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        // background-clip: border-box;
+    }
+
     &__details-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: stretch;
+
+        width: 100%;
+        height: 100%;
+    }
+
+    &__img-nav {
         display: flex;
         justify-content: space-between;
     }
 
     &__analytics {
         display: flex;
-        align-items: center;
-        justify-content: space-between;
+        // align-items: center;
+        justify-content: flex-end;
         gap: 0.5rem;
     }
 
@@ -42,12 +73,20 @@
         border-radius: 1rem;
     }
 
+    &__btn {
+        cursor: pointer;
+    }
+
     &__img {
         background-color: lightgreen;
-        width: 20rem;
-        height: 10rem;
-        object-fit: contain;
+        // width: 20rem;
+        // height: 10rem;
+        // object-fit: contain;
         border-radius: 1rem;
+        // background-position: center;
+        // background-size: contain;
+        // background-repeat: no-repeat;
+        // background-clip: border-box;
         // scroll-snap-align: start;
         // border: 1px solid black;
         // transition: transform 0.5s ease-in-out;

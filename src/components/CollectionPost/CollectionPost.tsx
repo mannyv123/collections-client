@@ -53,37 +53,48 @@ function CollectionPost(): JSX.Element {
     //     return () => clearTimeout(timer);
     // }, [currentImageIndex]);
 
+    // const style = {
+    //     backgroundImage: `url(${images[currentImageIndex]})`,
+    // };
+
     return (
         <div className="collection">
-            <div className="collection__details-container">
-                <div className="collection__poster-info">
-                    <h3 className="collection__title">Collection Title</h3>
-                    <p className="collection__user">By **USER**</p>
-                </div>
-                <div className="collection__analytics">
-                    <div className="collection__icon-container">
-                        <img src={picIcon} alt="count" className="collection__icon" />
-                        <p>6</p>
+            <div
+                className="collection__bg-image"
+                style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
+            >
+                <div className="collection__details-container">
+                    <div className="collection__poster-info">
+                        <h3 className="collection__title">Collection Title</h3>
+                        <p className="collection__user">By **USER**</p>
                     </div>
-                    <div className="collection__icon-container">
-                        <img src={likeIcon} alt="likes" className="collection__icon" />
-                        <p>9</p>
+                    <div className="collection__img-nav">
+                        <div onClick={prevImage} className="collecton__btn">
+                            P
+                        </div>
+                        <div onClick={nextImage} className="collecton__btn">
+                            N
+                        </div>
                     </div>
-                    <div className="collection__icon-container">
-                        <img src={commentIcon} alt="comments" className="collection__icon" />
-                        <p>3</p>
+                    <div className="collection__analytics">
+                        <div className="collection__icon-container">
+                            <img src={picIcon} alt="count" className="collection__icon" />
+                            <p>6</p>
+                        </div>
+                        <div className="collection__icon-container">
+                            <img src={likeIcon} alt="likes" className="collection__icon" />
+                            <p>9</p>
+                        </div>
+                        <div className="collection__icon-container">
+                            <img src={commentIcon} alt="comments" className="collection__icon" />
+                            <p>3</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div className="collection__img-container">
-                {/* <img className="collection__img" src={testImg1} alt="test" />
-                <img className="collection__img" src={testImg2} alt="test" />
-                <img className="collection__img" src={testImg3} alt="test" />
-                <img className="collection__img" src={testImg4} alt="test" />
-                <img className="collection__img" src={testImg5} alt="test" />
-                <img className="collection__img" src={testImg6} alt="test" />
-                <img className="collection__img" src={testImg7} alt="test" /> */}
-                <button onClick={prevImage}>Previous</button>
+
+            {/* <div className="collection__img-container">
+                
                 <img
                     className={`collection__img ${isAnimating ? "collection__img--transitioning" : ""}`}
                     src={images[currentImageIndex]}
@@ -92,9 +103,13 @@ function CollectionPost(): JSX.Element {
                     //     setIsAnimating(false);
                     //     console.log("hi");
                     // }}
-                />
-                <button onClick={nextImage}>Next</button>
-            </div>
+                /> 
+                 <div
+                    className={`collection__img ${isAnimating ? "collection__img--transitioning" : ""}`}
+                    style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
+                ></div> 
+                
+            </div> */}
         </div>
     );
 }
