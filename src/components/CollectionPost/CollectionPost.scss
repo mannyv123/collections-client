@@ -12,6 +12,7 @@
     // background: linear-gradient(#d3d3d300, #d3d3d3);
 
     overflow: hidden;
+
     &__details-container {
         display: flex;
         justify-content: space-between;
@@ -21,13 +22,23 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+        gap: 0.5rem;
+    }
+
+    &__icon-container {
+        display: flex;
+    }
+
+    &__icon {
+        width: 1.5rem;
+        object-fit: contain;
     }
 
     &__img-container {
         display: flex;
         gap: 0.5rem;
-        overflow: auto;
-        scroll-snap-type: x mandatory;
+        // overflow: auto;
+        // scroll-snap-type: x mandatory;
         border-radius: 1rem;
     }
 
@@ -37,7 +48,12 @@
         height: 10rem;
         object-fit: contain;
         border-radius: 1rem;
-        scroll-snap-align: start;
+        // scroll-snap-align: start;
         // border: 1px solid black;
+        // transition: transform 0.5s ease-in-out;
+
+        // &--transitioning {
+        //     transform: translate(-200%);
+        // }
     }
 }
