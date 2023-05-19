@@ -1,0 +1,15 @@
+.list-view {
+    padding: 3rem 3rem;
+    height: 93.5vh;
+
+    &__container {
+        // display: flex;
+        // flex-direction: column;
+        flex-wrap: wrap;
+        margin-top: 5rem;
+        // gap: 1rem;
+
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
