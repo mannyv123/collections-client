@@ -20,18 +20,6 @@ function CollectionPost({ collection }: CollectionPostProps): JSX.Element {
     console.log("post", collection);
     console.log("image data", collection.collection_images);
 
-    // temporary ** need to update to use images from posts
-    const [images, setImages] = useState<string[]>([
-        //tracks what images to include from the post
-        testImg1,
-        testImg2,
-        testImg3,
-        testImg4,
-        testImg5,
-        testImg6,
-        testImg7,
-    ]);
-
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
@@ -39,7 +27,7 @@ function CollectionPost({ collection }: CollectionPostProps): JSX.Element {
         if (!isAnimating) {
             // setIsAnimating(true);
             setCurrentImageIndex((prevIndex: number) =>
-                prevIndex === images.length - 1 ? 0 : prevIndex + 1
+                prevIndex === collection.collection_images.length - 1 ? 0 : prevIndex + 1
             );
         }
     };
@@ -48,22 +36,10 @@ function CollectionPost({ collection }: CollectionPostProps): JSX.Element {
         if (!isAnimating) {
             // setIsAnimating(true);
             setCurrentImageIndex((prevIndex: number) =>
-                prevIndex === 0 ? images.length - 1 : prevIndex - 1
+                prevIndex === 0 ? collection.collection_images.length - 1 : prevIndex - 1
             );
         }
     };
-
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setIsAnimating(false);
-    //     }, 500);
-
-    //     return () => clearTimeout(timer);
-    // }, [currentImageIndex]);
-
-    // const style = {
-    //     backgroundImage: `url(${images[currentImageIndex]})`,
-    // };
 
     return (
         <div className="collection">
@@ -102,24 +78,6 @@ function CollectionPost({ collection }: CollectionPostProps): JSX.Element {
                     </div>
                 </div>
             </div>
-
-            {/* <div className="collection__img-container">
-                
-                <img
-                    className={`collection__img ${isAnimating ? "collection__img--transitioning" : ""}`}
-                    src={images[currentImageIndex]}
-                    alt="collection"
-                    // onTransitionEnd={() => {
-                    //     setIsAnimating(false);
-                    //     console.log("hi");
-                    // }}
-                /> 
-                 <div
-                    className={`collection__img ${isAnimating ? "collection__img--transitioning" : ""}`}
-                    style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
-                ></div> 
-                
-            </div> */}
         </div>
     );
 }
