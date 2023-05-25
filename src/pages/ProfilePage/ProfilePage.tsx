@@ -2,6 +2,8 @@
 import { Link, Outlet, Routes, Route } from "react-router-dom";
 import "./ProfilePage.scss";
 import ViewCollections from "../../components/ViewCollections/ViewCollections";
+import ImageGallery from "../../components/ImageGallery/ImageGallery";
+import AboutUser from "../../components/AboutUser/AboutUser";
 import { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { Collections } from "../../types/types";
@@ -62,6 +64,8 @@ function ProfilePage(): JSX.Element {
 
                 <Routes>
                     <Route path="map" element={<ViewCollections collections={collections} />} />
+                    <Route path="gallery" element={<ImageGallery />} />
+                    <Route path="about" element={<AboutUser />} />
                 </Routes>
             </div>
         </section>
