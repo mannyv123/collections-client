@@ -2,13 +2,6 @@ import "./CollectionPost.scss";
 import picIcon from "../../assets/icons/picture-icon.svg";
 import likeIcon from "../../assets/icons/like-icon.svg";
 import commentIcon from "../../assets/icons/comment-icon.svg";
-import testImg1 from "../../assets/images/test-images/DSC_0655.jpg";
-import testImg2 from "../../assets/images/test-images/DSC_0703.jpg";
-import testImg3 from "../../assets/images/test-images/DSC_0761.jpg";
-import testImg4 from "../../assets/images/test-images/DSC_0773.jpg";
-import testImg5 from "../../assets/images/test-images/DSC_0794.jpg";
-import testImg6 from "../../assets/images/test-images/DSC_0850.jpg";
-import testImg7 from "../../assets/images/test-images/DSC_0901.jpg";
 import { useEffect, useState } from "react";
 import { Collections } from "../../types/types";
 
