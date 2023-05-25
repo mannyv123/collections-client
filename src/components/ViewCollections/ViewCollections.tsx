@@ -12,11 +12,10 @@ interface ViewCollectionsProps {
 function ViewCollections({ collections }: ViewCollectionsProps): JSX.Element {
     const [map, setMap] = useState<boolean>(false);
 
-    console.log(collections);
     return (
         <div className="view-collections">
             <ViewSwitch map={map} setMap={setMap} />
-            {map ? <MapBox /> : <ListView />}
+            {map ? <MapBox /> : <ListView collections={collections} />}
         </div>
     );
 }

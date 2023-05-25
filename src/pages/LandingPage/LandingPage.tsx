@@ -19,7 +19,7 @@ function LandingPage(): JSX.Element {
             console.error(error);
         }
     }
-    console.log(collections);
+
     return (
         <main>
             <ViewCollections collections={collections} />

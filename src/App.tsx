@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PageHeader from "./components/PageHeader/PageHeader";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
-import ViewCollections from "./components/ViewCollections/ViewCollections";
-import ImageGallery from "./components/ImageGallery/ImageGallery";
-import AboutUser from "./components/AboutUser/AboutUser";
+// import ViewCollections from "./components/ViewCollections/ViewCollections";
+// import ImageGallery from "./components/ImageGallery/ImageGallery";
+// import AboutUser from "./components/AboutUser/AboutUser";
 import AddCollection from "./pages/AddCollection/AddCollection";
 
 export const apiUrl = process.env.REACT_APP_API_URL;

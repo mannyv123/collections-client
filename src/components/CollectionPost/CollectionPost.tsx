@@ -10,8 +10,13 @@ import testImg5 from "../../assets/images/test-images/DSC_0794.jpg";
 import testImg6 from "../../assets/images/test-images/DSC_0850.jpg";
 import testImg7 from "../../assets/images/test-images/DSC_0901.jpg";
 import { useEffect, useState } from "react";
+import { Collections } from "../../types/types";
 
-function CollectionPost(): JSX.Element {
+interface CollectionPostProps {
+    collection: Collections;
+}
+
+function CollectionPost({ collection }: CollectionPostProps): JSX.Element {
     // temporary ** need to update to use images from posts
     const [images, setImages] = useState<string[]>([
         //tracks what images to include from the post
