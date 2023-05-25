@@ -1,8 +1,29 @@
 // import { useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, Routes, Route } from "react-router-dom";
 import "./ProfilePage.scss";
+import ViewCollections from "../../components/ViewCollections/ViewCollections";
+import { useEffect, useState } from "react";
+import axios, { AxiosResponse } from "axios";
+import { Collections } from "../../types/types";
+import { apiUrl } from "../../App";
 
 function ProfilePage(): JSX.Element {
+    //need to update
+    const [collections, setCollections] = useState<Collections[]>([]);
+    useEffect(() => {
+        getCollections();
+    }, []);
+
+    async function getCollections() {
+        try {
+            const response: AxiosResponse<Collections[]> = await axios.get(`${apiUrl}/collections`);
+            setCollections(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    //need to update end
+
     return (
         <section className="profile">
             <div className="profile__header">
@@ -37,7 +58,11 @@ function ProfilePage(): JSX.Element {
                 {/* Map */}
                 {/* Gallery */}
                 {/* About */}
-                <Outlet />
+                {/* <Outlet /> */}
+
+                <Routes>
+                    <Route path="map" element={<ViewCollections collections={collections} />} />
+                </Routes>
             </div>
         </section>
     );

@@ -1,26 +1,9 @@
 import { useEffect, useState } from "react";
 import ViewCollections from "../../components/ViewCollections/ViewCollections";
 import "./LandingPage.scss";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { apiUrl } from "../../App";
-
-//Type Definitions
-interface CollectionImages {
-    id: string;
-    title: string;
-    image: string;
-    imageUrl: string;
-    latitude: number;
-    longitude: number;
-}
-
-interface Collections {
-    id: string;
-    title: string;
-    description: string;
-    user_id: string;
-    collection_images: CollectionImages[];
-}
+import { Collections } from "../../types/types";
 
 function LandingPage(): JSX.Element {
     const [collections, setCollections] = useState<Collections[]>([]);
@@ -30,16 +13,16 @@ function LandingPage(): JSX.Element {
 
     async function getCollections() {
         try {
-            const response = await axios.get(`${apiUrl}/collections`);
-            console.log(response);
+            const response: AxiosResponse<Collections[]> = await axios.get(`${apiUrl}/collections`);
+            setCollections(response.data);
         } catch (error) {
             console.error(error);
         }
     }
-
+    console.log(collections);
     return (
         <main>
-            <ViewCollections />
+            <ViewCollections collections={collections} />
         </main>
     );
 }
