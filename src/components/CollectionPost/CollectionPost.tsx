@@ -17,6 +17,9 @@ interface CollectionPostProps {
 }
 
 function CollectionPost({ collection }: CollectionPostProps): JSX.Element {
+    console.log("post", collection);
+    console.log("image data", collection.collection_images);
+
     // temporary ** need to update to use images from posts
     const [images, setImages] = useState<string[]>([
         //tracks what images to include from the post
@@ -66,12 +69,14 @@ function CollectionPost({ collection }: CollectionPostProps): JSX.Element {
         <div className="collection">
             <div
                 className="collection__bg-image"
-                style={{ backgroundImage: `url(${images[currentImageIndex]})` }}
+                style={{
+                    backgroundImage: `url(${collection.collection_images[currentImageIndex].imageUrl})`,
+                }}
             >
                 <div className="collection__details-container">
                     <div className="collection__poster-info">
-                        <h3 className="collection__title">Collection Title</h3>
-                        <p className="collection__user">By **USER**</p>
+                        <h3 className="collection__title">{collection.title}</h3>
+                        <p className="collection__user">{collection.user_id}</p>
                     </div>
                     <div className="collection__img-nav">
                         <div onClick={prevImage} className="collecton__btn">
