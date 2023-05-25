@@ -8,6 +8,12 @@ import ImageGallery from "./components/ImageGallery/ImageGallery";
 import AboutUser from "./components/AboutUser/AboutUser";
 import AddCollection from "./pages/AddCollection/AddCollection";
 
+export const apiUrl = process.env.REACT_APP_API_URL;
+
+if (!apiUrl) {
+    throw new Error("No apiUrl set in environment variable. Please update.");
+}
+
 function App(): JSX.Element {
     return (
         <div className="App">
