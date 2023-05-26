@@ -15,7 +15,7 @@ function ViewCollections({ collections }: ViewCollectionsProps): JSX.Element {
     return (
         <div className="view-collections">
             <ViewSwitch map={map} setMap={setMap} />
-            {map ? <MapBox /> : <ListView collections={collections} />}
+            {map ? <MapBox collections={collections} /> : <ListView collections={collections} />}
         </div>
     );
 }
