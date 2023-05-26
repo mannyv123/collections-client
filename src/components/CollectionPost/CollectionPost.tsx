@@ -46,36 +46,6 @@ function CollectionPost({ collection }: CollectionPostProps): JSX.Element {
                     backgroundImage: `url(${collection.collection_images[currentImageIndex].imageUrl})`,
                 }}
             >
-                {/* <div className="collection__details-container">
-                    <div className="collection__poster-info">
-                        <h3 className="collection__title">{collection.title}</h3>
-                        <p className="collection__user">{collection.user_id}</p>
-                    </div>
-                    <div className="collection__img-nav">
-                        <div onClick={prevImage} className="collecton__btn">
-                            <MdOutlineNavigateBefore className="collection__btn-nav" />
-                        </div>
-                        <div onClick={nextImage} className="collecton__btn">
-                            <MdOutlineNavigateNext className="collection__btn-nav" />
-                        </div>
-                    </div>
-                    <div className="collection__analytics">
-                        <div className="collection__analytics-wrapper">
-                            <div className="collection__icon-container">
-                                <img src={picIcon} alt="count" className="collection__icon" />
-                                <p>6</p>
-                            </div>
-                            <div className="collection__icon-container">
-                                <img src={likeIcon} alt="likes" className="collection__icon" />
-                                <p>9</p>
-                            </div>
-                            <div className="collection__icon-container">
-                                <img src={commentIcon} alt="comments" className="collection__icon" />
-                                <p>3</p>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
                 <div className="collection__img-nav">
                     <div onClick={prevImage} className="collection__btn collection__btn--prev">
                         <MdOutlineNavigateBefore className="collection__btn-nav" />
