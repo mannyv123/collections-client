@@ -86,15 +86,15 @@ function CollectionPost({ collection }: CollectionPostProps): JSX.Element {
                     <div className="collection__analytics">
                         <div className="collection__icon-container">
                             <MdOutlinePhotoSizeSelectActual className="collection__icon" />
-                            <p>6</p>
+                            <p className="collection__count">6</p>
                         </div>
                         <div className="collection__icon-container">
                             <MdOutlineThumbUp className="collection__icon" />
-                            <p>9</p>
+                            <p className="collection__count">9</p>
                         </div>
                         <div className="collection__icon-container">
                             <MdOutlineInsertComment className="collection__icon" />
-                            <p>3</p>
+                            <p className="collection__count">3</p>
                         </div>
                     </div>
                 </div>

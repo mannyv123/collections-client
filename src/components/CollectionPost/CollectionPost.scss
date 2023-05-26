@@ -96,6 +96,7 @@
     &__analytics {
         display: flex;
         justify-content: space-between;
+        align-items: baseline;
     }
 
     &__analytics-wrapper {
@@ -109,6 +110,11 @@
     &__icon {
         width: 1.5rem;
         object-fit: contain;
+        padding-top: 0.1rem;
+    }
+
+    &__count {
+        font-size: 0.8rem;
     }
 
     &__img-container {
