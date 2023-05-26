@@ -16,9 +16,9 @@
     // width: 20rem;
     height: 13rem;
 
-    // &:hover &__details-container {
-    //     display: flex;
-    // }
+    &:hover &__details-container {
+        display: flex;
+    }
 
     // &:hover &__poster-info {
     //     padding: 0 0.5rem;
@@ -56,17 +56,17 @@
     }
 
     &__details-container {
-        // display: none;
+        display: none;
         // flex-direction: column;
         // justify-content: space-between;
         // align-items: stretch;
-        display: flex;
+        // display: flex;
         justify-content: space-between;
         width: 100%;
         // height: 3.5rem;
         position: absolute;
         bottom: 0;
-        background-color: #fff;
+        background-color: #ffffffcc;
         padding: 0.5rem;
     }
 
