@@ -110,7 +110,6 @@
     &__icon {
         width: 1.5rem;
         object-fit: contain;
-        padding-top: 0.1rem;
     }
 
     &__count {
@@ -129,6 +128,14 @@
         cursor: pointer;
         display: flex;
         justify-content: center;
+
+        &--prev {
+            margin-left: 1rem;
+        }
+
+        &--next {
+            margin-right: 1rem;
+        }
     }
 
     &__btn-nav {

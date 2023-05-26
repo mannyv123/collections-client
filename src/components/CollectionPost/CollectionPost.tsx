@@ -76,7 +76,14 @@ function CollectionPost({ collection }: CollectionPostProps): JSX.Element {
                         </div>
                     </div>
                 </div> */}
-
+                <div className="collection__img-nav">
+                    <div onClick={prevImage} className="collection__btn collection__btn--prev">
+                        <MdOutlineNavigateBefore className="collection__btn-nav" />
+                    </div>
+                    <div onClick={nextImage} className="collection__btn collection__btn--next">
+                        <MdOutlineNavigateNext className="collection__btn-nav" />
+                    </div>
+                </div>
                 <div className="collection__details-container">
                     <div className="collection__poster-info">
                         <h3 className="collection__title">{collection.title}</h3>
