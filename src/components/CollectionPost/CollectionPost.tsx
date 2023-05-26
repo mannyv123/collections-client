@@ -4,15 +4,13 @@ import likeIcon from "../../assets/icons/like-icon.svg";
 import commentIcon from "../../assets/icons/comment-icon.svg";
 import { useEffect, useState } from "react";
 import { Collections } from "../../types/types";
+import { MdOutlineNavigateBefore, MdOutlineNavigateNext } from "react-icons/md";
 
 interface CollectionPostProps {
     collection: Collections;
 }
 
 function CollectionPost({ collection }: CollectionPostProps): JSX.Element {
-    console.log("post", collection);
-    console.log("image data", collection.collection_images);
-
     const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
     const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
@@ -49,10 +47,10 @@ function CollectionPost({ collection }: CollectionPostProps): JSX.Element {
                     </div>
                     <div className="collection__img-nav">
                         <div onClick={prevImage} className="collecton__btn">
-                            P
+                            <MdOutlineNavigateBefore className="collection__btn-nav" />
                         </div>
                         <div onClick={nextImage} className="collecton__btn">
-                            N
+                            <MdOutlineNavigateNext className="collection__btn-nav" />
                         </div>
                     </div>
                     <div className="collection__analytics">
