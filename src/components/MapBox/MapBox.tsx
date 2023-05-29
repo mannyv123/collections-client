@@ -2,7 +2,7 @@ import "./MapBox.scss";
 import Map, { Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Collections } from "../../types/types";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 interface MapBoxProps {
     collections: Collections[];
@@ -12,7 +12,7 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function MapBox({ collections }: MapBoxProps): JSX.Element {
     // const [currentPos, setCurrentPos] = useState({ latitude: 37.8, longitude: -122.4, zoom: 2 });
-    const [viewState, setViewState] = useState({ latitude: 37.8, longitude: -122.4, zoom: 2 });
+    const [viewState, setViewState] = useState({ latitude: 49.285283, longitude: -123.115044, zoom: 2 });
 
     console.log(collections);
 
@@ -28,7 +28,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
         }
 
         function error() {
-            setViewState({ latitude: 37.8, longitude: -122.4, zoom: 2 });
+            setViewState({ latitude: 49.285283, longitude: -123.115044, zoom: 2 });
         }
 
         if (!navigator.geolocation) {
