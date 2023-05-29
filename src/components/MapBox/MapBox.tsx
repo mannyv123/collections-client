@@ -7,12 +7,21 @@ import { useState } from "react";
 interface MapBoxProps {
     collections: Collections[];
 }
+interface View {
+    latitude: number;
+    longitude: number;
+    zoom: number;
+}
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function MapBox({ collections }: MapBoxProps): JSX.Element {
     // const [currentPos, setCurrentPos] = useState({ latitude: 37.8, longitude: -122.4, zoom: 2 });
-    const [viewState, setViewState] = useState({ latitude: 49.285283, longitude: -123.115044, zoom: 2 });
+    const [viewState, setViewState] = useState<View>({
+        latitude: 49.285283,
+        longitude: -123.115044,
+        zoom: 2,
+    });
 
     console.log(collections);
 
@@ -20,14 +29,14 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
     //     getLocation();
     // }, []);
 
-    const getLocation = () => {
-        function success(position: GeolocationPosition) {
+    const getLocation = (): void => {
+        function success(position: GeolocationPosition): void {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
             setViewState({ latitude, longitude, zoom: 2 });
         }
 
-        function error() {
+        function error(): void {
             setViewState({ latitude: 49.285283, longitude: -123.115044, zoom: 2 });
         }
 
