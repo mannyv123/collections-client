@@ -38,6 +38,9 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
         }
     };
 
+    const handleMarkerClick = (imageId: string) => {
+        console.log("I clicked it", imageId);
+    };
     // console.log(currentPos);
 
     return (
@@ -60,6 +63,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
                             longitude={image.longitude}
                             latitude={image.latitude}
                             color="red"
+                            onClick={() => handleMarkerClick(image.id)}
                         />
                     ))
                 )}
