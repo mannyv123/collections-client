@@ -3,6 +3,7 @@ import Map, { Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Collections } from "../../types/types";
 import { useState } from "react";
+import ViewPost from "../ViewPost/ViewPost";
 
 interface MapBoxProps {
     collections: Collections[];
@@ -78,6 +79,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
                 )}
                 {/* <Marker longitude={-122.4} latitude={37.8} color="red" /> */}
             </Map>
+            <ViewPost />
         </section>
     );
 }
