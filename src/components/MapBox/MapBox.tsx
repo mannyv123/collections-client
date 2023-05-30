@@ -17,6 +17,7 @@ interface View {
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function MapBox({ collections }: MapBoxProps): JSX.Element {
+    const [viewPost, setViewPost] = useState<Boolean>(false);
     // const [currentPos, setCurrentPos] = useState({ latitude: 37.8, longitude: -122.4, zoom: 2 });
     const [viewState, setViewState] = useState<View>({
         latitude: 49.285283,
@@ -50,6 +51,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
 
     const handleMarkerClick = (imageId: string) => {
         console.log("I clicked it", imageId);
+        setViewPost(!viewPost);
     };
     // console.log(currentPos);
 
@@ -79,7 +81,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
                 )}
                 {/* <Marker longitude={-122.4} latitude={37.8} color="red" /> */}
             </Map>
-            <ViewPost />
+            {viewPost && <ViewPost />}
         </section>
     );
 }
