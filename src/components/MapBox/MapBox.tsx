@@ -1,8 +1,8 @@
 import "./MapBox.scss";
-import Map, { Marker } from "react-map-gl";
+import Map, { MapboxEvent, Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Collections } from "../../types/types";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import ViewPost from "../ViewPost/ViewPost";
 
 interface MapBoxProps {
@@ -50,16 +50,20 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
         }
     };
 
-    const handleMarkerClick = (imageId: string, collectionId: string) => {
-        console.log("I clicked it", imageId, collectionId);
-        const selectedCollection = collections.find((collection) => collection.id === collectionId);
-        setSelected(selectedCollection);
-        setViewPost(!viewPost);
+    const handleMarkerClick = (event: MapboxEvent<MouseEvent>, imageId: string, collectionId: string) => {
+        event.originalEvent.stopPropagation();
+        if (viewPost) {
+            console.log("I clicked it", imageId, collectionId);
+            const selectedCollection = collections.find((collection) => collection.id === collectionId);
+            setSelected(selectedCollection);
+        } else {
+            setViewPost(!viewPost);
+        }
     };
     // console.log(currentPos);
 
     return (
-        <section className="map-container">
+        <section className="map-container" onClick={() => setViewPost(false)}>
             <Map
                 // initialViewState={currentPos}
                 // {...currentPos}
@@ -78,7 +82,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
                             longitude={image.longitude}
                             latitude={image.latitude}
                             color="red"
-                            onClick={() => handleMarkerClick(image.id, collection.id)}
+                            onClick={(event) => handleMarkerClick(event, image.id, collection.id)}
                         />
                     ))
                 )}
