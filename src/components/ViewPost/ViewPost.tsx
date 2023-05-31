@@ -1,9 +1,15 @@
 import "./ViewPost.scss";
+import { Collections } from "../../types/types";
 
-function ViewPost(): JSX.Element {
+interface ViewPostProps {
+    selected: Collections;
+}
+
+function ViewPost({ selected }: ViewPostProps): JSX.Element {
     return (
         <section className="view-post">
-            <h3 className="view-post__title">Post Title</h3>
+            <h3 className="view-post__title">{selected.title}</h3>
+            <p>{selected.user_id}</p>
         </section>
     );
 }
