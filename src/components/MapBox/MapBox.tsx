@@ -1,8 +1,8 @@
 import "./MapBox.scss";
-import Map, { MapboxEvent, Marker } from "react-map-gl";
+import Map, { MapboxEvent, Marker, MapRef } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Collections } from "../../types/types";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ViewPost from "../ViewPost/ViewPost";
 
 interface MapBoxProps {
@@ -26,6 +26,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
     });
     const [selected, setSelected] = useState<Collections>();
     const [selectedImgIndex, setSelectedImgIndex] = useState<number>(0);
+    const mapRef = useRef<MapRef | null>(null);
 
     console.log(viewPost);
 
@@ -66,7 +67,8 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
         );
         setSelected(selectedCollection);
         setSelectedImgIndex(selectedImageIndex);
-        setViewState({ latitude: imageLat, longitude: imageLng, zoom: 4 });
+        // setViewState({ latitude: imageLat, longitude: imageLng, zoom: 4 });
+        mapRef.current?.flyTo({ center: [imageLng, imageLat], duration: 2000 });
         if (!viewPost) setViewPost(true);
     };
     // console.log(currentPos);
@@ -83,6 +85,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
                 mapStyle="mapbox://styles/mapbox/light-v11"
                 mapboxAccessToken={MAPBOX_TOKEN}
                 projection="globe"
+                ref={mapRef}
             >
                 {collections.map((collection) =>
                     collection.collection_images.map((image) => (
