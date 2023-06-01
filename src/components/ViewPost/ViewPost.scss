@@ -7,4 +7,11 @@
     z-index: 2;
 
     background-color: grey;
+
+    &__selected-img {
+        width: 15rem;
+        // height: 100%;
+        height: 10rem;
+        object-fit: cover;
+    }
 }

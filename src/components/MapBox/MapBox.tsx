@@ -25,6 +25,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
         zoom: 2,
     });
     const [selected, setSelected] = useState<Collections>();
+    const [selectedImgIndex, setSelectedImgIndex] = useState<number>(0);
 
     console.log(viewPost);
 
@@ -53,8 +54,12 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
     const handleMarkerClick = (event: MapboxEvent<MouseEvent>, imageId: string, collectionId: string) => {
         event.originalEvent.stopPropagation();
         console.log("I clicked it", imageId, collectionId);
-        const selectedCollection = collections.find((collection) => collection.id === collectionId);
+        const selectedCollection = collections.find((collection) => collection.id === collectionId)!;
+        const selectedImageIndex = selectedCollection.collection_images.findIndex(
+            (image) => image.id === imageId
+        );
         setSelected(selectedCollection);
+        setSelectedImgIndex(selectedImageIndex);
         if (!viewPost) setViewPost(true);
     };
     // console.log(currentPos);
@@ -86,7 +91,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
                 )}
                 {/* <Marker longitude={-122.4} latitude={37.8} color="red" /> */}
             </Map>
-            {viewPost && selected && <ViewPost selected={selected} />}
+            {viewPost && selected && <ViewPost selected={selected} selectedImgIndex={selectedImgIndex} />}
         </section>
     );
 }
