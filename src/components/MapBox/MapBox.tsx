@@ -2,7 +2,7 @@ import "./MapBox.scss";
 import Map, { MapboxEvent, Marker } from "react-map-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Collections } from "../../types/types";
-import { MouseEventHandler, useState } from "react";
+import { useEffect, useState } from "react";
 import ViewPost from "../ViewPost/ViewPost";
 
 interface MapBoxProps {
@@ -17,7 +17,7 @@ interface View {
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function MapBox({ collections }: MapBoxProps): JSX.Element {
-    const [viewPost, setViewPost] = useState<Boolean>(false);
+    const [viewPost, setViewPost] = useState<Boolean>(true);
     // const [currentPos, setCurrentPos] = useState({ latitude: 37.8, longitude: -122.4, zoom: 2 });
     const [viewState, setViewState] = useState<View>({
         latitude: 49.285283,
@@ -26,11 +26,11 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
     });
     const [selected, setSelected] = useState<Collections>();
 
-    console.log(collections);
+    console.log(viewPost);
 
-    // useEffect(() => {
-    //     getLocation();
-    // }, []);
+    useEffect(() => {
+        getLocation();
+    }, []);
 
     const getLocation = (): void => {
         function success(position: GeolocationPosition): void {
@@ -63,7 +63,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
     // console.log(currentPos);
 
     return (
-        <section className="map-container" onClick={() => setViewPost(false)}>
+        <section className="map-container">
             <Map
                 // initialViewState={currentPos}
                 // {...currentPos}
@@ -79,6 +79,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
                     collection.collection_images.map((image) => (
                         <Marker
                             key={image.id}
+                            style={{ cursor: "pointer" }}
                             longitude={image.longitude}
                             latitude={image.latitude}
                             color="red"
