@@ -52,18 +52,15 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
 
     const handleMarkerClick = (event: MapboxEvent<MouseEvent>, imageId: string, collectionId: string) => {
         event.originalEvent.stopPropagation();
-        if (viewPost) {
-            console.log("I clicked it", imageId, collectionId);
-            const selectedCollection = collections.find((collection) => collection.id === collectionId);
-            setSelected(selectedCollection);
-        } else {
-            setViewPost(!viewPost);
-        }
+        console.log("I clicked it", imageId, collectionId);
+        const selectedCollection = collections.find((collection) => collection.id === collectionId);
+        setSelected(selectedCollection);
+        if (!viewPost) setViewPost(true);
     };
     // console.log(currentPos);
 
     return (
-        <section className="map-container">
+        <section className="map-container" onClick={() => setViewPost(false)}>
             <Map
                 // initialViewState={currentPos}
                 // {...currentPos}
