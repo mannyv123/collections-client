@@ -10,7 +10,7 @@ interface ViewCollectionsProps {
 }
 
 function ViewCollections({ collections }: ViewCollectionsProps): JSX.Element {
-    const [map, setMap] = useState<boolean>(false);
+    const [map, setMap] = useState<boolean>(true);
 
     return (
         <div className="view-collections">

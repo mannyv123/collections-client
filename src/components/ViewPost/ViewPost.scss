@@ -1,0 +1,33 @@
+.view-post {
+    position: absolute;
+    bottom: 0;
+    // height: 13rem;
+    width: 100%;
+
+    z-index: 2;
+
+    background-color: grey;
+
+    padding: 1rem;
+
+    &__imgs-container {
+        display: flex;
+    }
+
+    &__selected-img {
+        width: 15rem;
+        height: 10rem;
+        object-fit: cover;
+    }
+
+    &__other-imgs-container {
+        display: flex;
+        overflow: hidden;
+    }
+
+    &__other-imgs {
+        width: 15rem;
+        height: 10rem;
+        object-fit: cover;
+    }
+}
