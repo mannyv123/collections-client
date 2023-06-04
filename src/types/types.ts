@@ -15,3 +15,14 @@ export interface Collections {
     user_id: string;
     collection_images: CollectionImages[];
 }
+
+export interface FormTextInputs {
+    username: string;
+    password: string;
+    confirmPassword: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    about: string;
+    setup: string;
+}

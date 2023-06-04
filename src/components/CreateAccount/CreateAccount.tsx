@@ -1,19 +1,11 @@
 import { FormEvent } from "react";
 import "./CreateAccount.scss";
+import { FormTextInputs } from "../../types/types";
 
 interface CreateAccountProps {
     setSignUpStep(step: string): void;
     handleInputChange(event: FormEvent): void;
-    inputValues: {
-        username: string;
-        password: string;
-        confirmPassword: string;
-        email: string;
-        first_name: string;
-        last_name: string;
-        about: string;
-        setup: string;
-    };
+    inputValues: FormTextInputs;
 }
 
 function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: CreateAccountProps): JSX.Element {
@@ -23,8 +15,8 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
             <div className="create-account__form-inputs">
                 <input
                     type="text"
-                    name="setUsername"
-                    id="setUsername"
+                    name="username"
+                    id="username"
                     placeholder="Create a username"
                     className="create-account__input"
                     onChange={handleInputChange}
@@ -32,10 +24,12 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
                 />
                 <input
                     type="password"
-                    name="setPassword"
-                    id="setPassword"
+                    name="password"
+                    id="password"
                     placeholder="Set a password"
                     className="create-account__input"
+                    onChange={handleInputChange}
+                    value={inputValues.password}
                 />
                 <input
                     type="password"
@@ -43,6 +37,8 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
                     id="confirmPassword"
                     placeholder="Confirm password"
                     className="create-account__input"
+                    onChange={handleInputChange}
+                    value={inputValues.confirmPassword}
                 />
                 <input
                     type="email"
@@ -50,6 +46,8 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
                     id="email"
                     placeholder="Enter your email"
                     className="create-account__input"
+                    onChange={handleInputChange}
+                    value={inputValues.email}
                 />
                 <button
                     type="button"

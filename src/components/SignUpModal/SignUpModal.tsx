@@ -3,12 +3,13 @@ import "./SignUpModal.scss";
 import CreateAccount from "../CreateAccount/CreateAccount";
 import CreateProfile from "../CreateProfile/CreateProfile";
 import CreateProfileImages from "../CreateProfileImages/CreateProfileImages";
+import { FormTextInputs } from "../../types/types";
 
 interface SignUpModalProps {
     signUpDialogRef: RefObject<HTMLDialogElement>;
 }
 
-const initialValues = {
+const initialValues: FormTextInputs = {
     username: "",
     password: "",
     confirmPassword: "",
@@ -28,7 +29,7 @@ function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
         const { name, value } = event.currentTarget;
         setInputValues({ ...inputValues, [name]: value });
     };
-
+    console.log(inputValues);
     const handleSignUpFormSubmit = () => {};
 
     return (
@@ -52,7 +53,13 @@ function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
                             inputValues={inputValues}
                         />
                     )}
-                    {signUpStep === "profile" && <CreateProfile setSignUpStep={setSignUpStep} />}
+                    {signUpStep === "profile" && (
+                        <CreateProfile
+                            setSignUpStep={setSignUpStep}
+                            handleInputChange={handleInputChange}
+                            inputValues={inputValues}
+                        />
+                    )}
                     {signUpStep === "profileImage" && <CreateProfileImages setSignUpStep={setSignUpStep} />}
                 </form>
             </div>
