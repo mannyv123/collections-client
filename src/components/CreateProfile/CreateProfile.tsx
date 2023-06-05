@@ -11,8 +11,9 @@ interface CreateProfileProps {
 function CreateProfile({ setSignUpStep, handleInputChange, inputValues }: CreateProfileProps): JSX.Element {
     return (
         <div className="create-profile">
-            <h2 className="create-profile__title">Create Your Profile</h2>
             <div className="create-profile__form-inputs">
+                <h2 className="create-profile__title">Create Your Profile</h2>
+                <label htmlFor="first_name">Add your first name:</label>
                 <input
                     type="text"
                     name="first_name"
@@ -22,6 +23,7 @@ function CreateProfile({ setSignUpStep, handleInputChange, inputValues }: Create
                     onChange={handleInputChange}
                     value={inputValues.first_name}
                 />
+                <label htmlFor="lastName">Add your first name:</label>
                 <input
                     type="text"
                     name="lastName"
@@ -31,18 +33,18 @@ function CreateProfile({ setSignUpStep, handleInputChange, inputValues }: Create
                     onChange={handleInputChange}
                     value={inputValues.last_name}
                 />
+                <label htmlFor="about">Add some details about yourself:</label>
                 <textarea
                     name="about"
                     id="about"
-                    placeholder="Add Some Details About Yourself"
                     className="create-profile__input create-profile__input--textarea"
                     onChange={handleInputChange}
                     value={inputValues.about}
                 ></textarea>
+                <label htmlFor="setup">What's your camera setup:</label>
                 <textarea
                     name="setup"
                     id="setup"
-                    placeholder="Add What Camera You Use"
                     className="create-profile__input create-profile__input--textarea"
                     onChange={handleInputChange}
                     value={inputValues.setup}
