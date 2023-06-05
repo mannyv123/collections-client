@@ -1,5 +1,9 @@
 .create-account {
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     &__title {
         margin-bottom: 3rem;
@@ -21,7 +25,7 @@
     }
 
     &__next {
-        margin-top: 3rem;
+        // margin-top: 3rem;
         border: 1px solid black;
         border-radius: 0.5rem;
         padding: 0.5rem 3rem;

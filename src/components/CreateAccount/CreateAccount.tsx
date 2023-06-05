@@ -11,8 +11,8 @@ interface CreateAccountProps {
 function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: CreateAccountProps): JSX.Element {
     return (
         <div className="create-account">
-            <h2 className="create-account__title">Create an Account</h2>
             <div className="create-account__form-inputs">
+                <h2 className="create-account__title">Create an Account</h2>
                 <label htmlFor="setUsername">Create a username:</label>
                 <input
                     type="text"
@@ -53,14 +53,11 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
                     onChange={handleInputChange}
                     value={inputValues.email}
                 />
-                <button
-                    type="button"
-                    className="create-account__next"
-                    onClick={() => setSignUpStep("profile")}
-                >
-                    Next
-                </button>
             </div>
+
+            <button type="button" className="create-account__next" onClick={() => setSignUpStep("profile")}>
+                Next
+            </button>
         </div>
     );
 }
