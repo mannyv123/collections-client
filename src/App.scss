@@ -8,6 +8,7 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
+    font-size: 1rem;
 }
 
 main {
@@ -19,4 +20,5 @@ main {
 button {
     cursor: pointer;
     background-color: #fff;
+    font-size: 1rem;
 }

@@ -4,8 +4,8 @@
     left: 50%;
     translate: (-50% -50%);
 
-    width: 45vw;
-    height: 60vh;
+    width: 50vw;
+    height: 65vh;
 
     border-radius: 1rem;
     padding: 2rem 2.5rem;
@@ -20,8 +20,9 @@
     &__close {
         position: absolute;
         top: 2.25rem;
-        right: 2.25rem;
+        right: 2.5rem;
         cursor: pointer;
+        transform: scale(1.8);
     }
 
     // &__title {

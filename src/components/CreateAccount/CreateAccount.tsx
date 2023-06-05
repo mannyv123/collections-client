@@ -18,7 +18,7 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
                     type="text"
                     name="username"
                     id="setUsername"
-                    placeholder="Create a username"
+                    placeholder="Username"
                     className="create-account__input"
                     onChange={handleInputChange}
                     value={inputValues.username}
@@ -28,11 +28,12 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
                     type="password"
                     name="password"
                     id="setPassword"
-                    placeholder="Set a password"
+                    placeholder="Password"
                     className="create-account__input"
                     onChange={handleInputChange}
                     value={inputValues.password}
                 />
+                <label htmlFor="confirmPassword">Confirm your password:</label>
                 <input
                     type="password"
                     name="confirmPassword"
@@ -42,11 +43,12 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
                     onChange={handleInputChange}
                     value={inputValues.confirmPassword}
                 />
+                <label htmlFor="email">Enter your email:</label>
                 <input
                     type="email"
                     name="email"
                     id="email"
-                    placeholder="Enter your email"
+                    placeholder="Email"
                     className="create-account__input"
                     onChange={handleInputChange}
                     value={inputValues.email}
