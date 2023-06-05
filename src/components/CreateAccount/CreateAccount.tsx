@@ -13,19 +13,21 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
         <div className="create-account">
             <h2 className="create-account__title">Create an Account</h2>
             <div className="create-account__form-inputs">
+                <label htmlFor="setUsername">Create a username:</label>
                 <input
                     type="text"
                     name="username"
-                    id="username"
+                    id="setUsername"
                     placeholder="Create a username"
                     className="create-account__input"
                     onChange={handleInputChange}
                     value={inputValues.username}
                 />
+                <label htmlFor="setPassword">Create a password:</label>
                 <input
                     type="password"
                     name="password"
-                    id="password"
+                    id="setPassword"
                     placeholder="Set a password"
                     className="create-account__input"
                     onChange={handleInputChange}

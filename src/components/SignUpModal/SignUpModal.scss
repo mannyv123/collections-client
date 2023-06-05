@@ -4,10 +4,10 @@
     left: 50%;
     translate: (-50% -50%);
 
-    width: 35vw;
+    width: 45vw;
     height: 60vh;
 
-    border-radius: 1.5625rem;
+    border-radius: 1rem;
     padding: 2rem 2.5rem;
 
     box-shadow: 0 0 #0000, 0 0 #0000, 0 25px 50px -12px rgba(0, 0, 0, 0.25);
@@ -30,6 +30,7 @@
     // }
 
     &__form {
+        width: 100%;
         display: flex;
         flex-direction: column;
         // align-items: center;
@@ -37,7 +38,7 @@
 
     &__input {
         // margin: 0 4rem;
-        width: 15rem;
+        width: 100%;
         font-size: 1.25rem;
         border-radius: 1rem;
         border: 1px solid black;

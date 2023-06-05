@@ -8,6 +8,10 @@ function CreateProfileImages({ setSignUpStep }: CreateProfileImagesProps): JSX.E
     return (
         <div className="profile-imgs">
             <h2>Add Profile Images</h2>
+            <div className="profile-imgs__uploads-container">
+                <input type="file" name="profileImg" id="profileImg" />
+                <input type="file" name="coverImg" id="coverImg" />
+            </div>
             <div className="profile-imgs__btn-container">
                 <button type="button" onClick={() => setSignUpStep("profile")} className="profile-imgs__btn">
                     Back
