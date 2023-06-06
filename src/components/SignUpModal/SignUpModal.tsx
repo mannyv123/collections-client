@@ -1,4 +1,4 @@
-import { FormEvent, RefObject, useState } from "react";
+import { ChangeEvent, FormEvent, RefObject, useState } from "react";
 import "./SignUpModal.scss";
 import CreateAccount from "../CreateAccount/CreateAccount";
 import CreateProfile from "../CreateProfile/CreateProfile";
@@ -23,13 +23,26 @@ const initialValues: FormTextInputs = {
 
 function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
     const [signUpStep, setSignUpStep] = useState<string>("account");
-    const [inputValues, setInputValues] = useState(initialValues); //tracks form text inputs
+    const [inputValues, setInputValues] = useState<FormTextInputs>(initialValues); //tracks form text inputs
+    const [coverImg, setCoverImg] = useState<{}>();
+    const [coverImgUrl, setCoverImgUrl] = useState<string>();
 
     //Handles form input values
     const handleInputChange = (event: FormEvent<HTMLInputElement>) => {
         const { name, value } = event.currentTarget;
         setInputValues({ ...inputValues, [name]: value });
     };
+
+    //Handles Cover Img
+    const handleCoverImg = (event: ChangeEvent<HTMLInputElement>) => {
+        // setCoverImg(event.currentTarget.files[0]);
+        const seletedCoverImg = event.currentTarget.files?.[0];
+        if (seletedCoverImg) {
+            setCoverImg(seletedCoverImg);
+            setCoverImgUrl(URL.createObjectURL(seletedCoverImg));
+        }
+    };
+
     console.log(inputValues);
     const handleSignUpFormSubmit = () => {};
 
@@ -60,7 +73,14 @@ function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
                             inputValues={inputValues}
                         />
                     )}
-                    {signUpStep === "profileImage" && <CreateProfileImages setSignUpStep={setSignUpStep} />}
+                    {signUpStep === "profileImage" && (
+                        <CreateProfileImages
+                            setSignUpStep={setSignUpStep}
+                            handleCoverImg={handleCoverImg}
+                            coverImg={coverImg}
+                            coverImgUrl={coverImgUrl}
+                        />
+                    )}
                 </form>
             </div>
         </dialog>
