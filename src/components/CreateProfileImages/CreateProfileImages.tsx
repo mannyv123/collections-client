@@ -24,12 +24,14 @@ function CreateProfileImages({
     console.log(profileImgUrl);
     return (
         <div className="profile-imgs">
-            <h2>Add Profile Images</h2>
+            <h2 className="profile-imgs__title">Add Profile Images</h2>
             <div className="profile-imgs__uploads-container">
                 <label htmlFor="coverImg">
                     <div className="profile-imgs__cover-img-container">
-                        {coverImg && (
+                        {coverImg ? (
                             <img src={coverImgUrl} alt="cover" className="profile-imgs__cover-img" />
+                        ) : (
+                            "Click Here"
                         )}
                     </div>
                 </label>
@@ -43,8 +45,10 @@ function CreateProfileImages({
                 />
                 <label htmlFor="profileImg">
                     <div className="profile-imgs__profile-img-container">
-                        {profileImg && (
+                        {profileImg ? (
                             <img src={profileImgUrl} alt="profile" className="profile-imgs__profile-img" />
+                        ) : (
+                            "Click Here"
                         )}
                     </div>
                 </label>
