@@ -6,6 +6,9 @@ interface CreateProfileImagesProps {
     handleCoverImg: (event: ChangeEvent<HTMLInputElement>) => void;
     coverImg: {} | undefined;
     coverImgUrl: string | undefined;
+    handleProfileImg: (event: ChangeEvent<HTMLInputElement>) => void;
+    profileImg: {} | undefined;
+    profileImgUrl: string | undefined;
 }
 
 function CreateProfileImages({
@@ -13,21 +16,16 @@ function CreateProfileImages({
     handleCoverImg,
     coverImg,
     coverImgUrl,
+    handleProfileImg,
+    profileImg,
+    profileImgUrl,
 }: CreateProfileImagesProps): JSX.Element {
-    console.log(coverImg);
-    console.log(coverImgUrl);
+    console.log(profileImg);
+    console.log(profileImgUrl);
     return (
         <div className="profile-imgs">
             <h2>Add Profile Images</h2>
             <div className="profile-imgs__uploads-container">
-                {/* <label htmlFor="profileImg">FILE</label> */}
-                {/* <input
-                    type="file"
-                    name="profileImg"
-                    id="profileImg"
-                    accept=".jpg, .jpeg, .png"
-                    className="profile-imgs__img-input"
-                /> */}
                 <label htmlFor="coverImg">
                     <div className="profile-imgs__cover-img-container">
                         {coverImg && (
@@ -42,6 +40,21 @@ function CreateProfileImages({
                     accept=".jpg, .jpeg, .png"
                     className="profile-imgs__img-input"
                     onChange={handleCoverImg}
+                />
+                <label htmlFor="profileImg">
+                    <div className="profile-imgs__profile-img-container">
+                        {profileImg && (
+                            <img src={profileImgUrl} alt="profile" className="profile-imgs__profile-img" />
+                        )}
+                    </div>
+                </label>
+                <input
+                    type="file"
+                    name="profileImg"
+                    id="profileImg"
+                    accept=".jpg, .jpeg, .png"
+                    className="profile-imgs__img-input"
+                    onChange={handleProfileImg}
                 />
             </div>
             <div className="profile-imgs__btn-container">

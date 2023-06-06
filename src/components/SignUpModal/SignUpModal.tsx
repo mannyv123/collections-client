@@ -24,8 +24,10 @@ const initialValues: FormTextInputs = {
 function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
     const [signUpStep, setSignUpStep] = useState<string>("account");
     const [inputValues, setInputValues] = useState<FormTextInputs>(initialValues); //tracks form text inputs
-    const [coverImg, setCoverImg] = useState<{}>();
-    const [coverImgUrl, setCoverImgUrl] = useState<string>();
+    const [coverImg, setCoverImg] = useState<{}>(); //tracks file data for cover img
+    const [coverImgUrl, setCoverImgUrl] = useState<string>(); //tracks temporary url for cover img preview
+    const [profileImg, setProfileImg] = useState<{}>(); //tracks file data for profile img
+    const [profileImgUrl, setProfileImgUrl] = useState<string>(); //tracks temporary url for profile img preview
 
     //Handles form input values
     const handleInputChange = (event: FormEvent<HTMLInputElement>) => {
@@ -33,13 +35,21 @@ function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
         setInputValues({ ...inputValues, [name]: value });
     };
 
-    //Handles Cover Img
+    //Handles cover img
     const handleCoverImg = (event: ChangeEvent<HTMLInputElement>) => {
-        // setCoverImg(event.currentTarget.files[0]);
-        const seletedCoverImg = event.currentTarget.files?.[0];
-        if (seletedCoverImg) {
-            setCoverImg(seletedCoverImg);
-            setCoverImgUrl(URL.createObjectURL(seletedCoverImg));
+        const selectedCoverImg = event.currentTarget.files?.[0];
+        if (selectedCoverImg) {
+            setCoverImg(selectedCoverImg);
+            setCoverImgUrl(URL.createObjectURL(selectedCoverImg));
+        }
+    };
+
+    //Handles profile img
+    const handleProfileImg = (event: ChangeEvent<HTMLInputElement>) => {
+        const selectedProfileImg = event.currentTarget.files?.[0];
+        if (selectedProfileImg) {
+            setProfileImg(selectedProfileImg);
+            setProfileImgUrl(URL.createObjectURL(selectedProfileImg));
         }
     };
 
@@ -79,6 +89,9 @@ function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
                             handleCoverImg={handleCoverImg}
                             coverImg={coverImg}
                             coverImgUrl={coverImgUrl}
+                            handleProfileImg={handleProfileImg}
+                            profileImg={profileImg}
+                            profileImgUrl={profileImgUrl}
                         />
                     )}
                 </form>
