@@ -1,46 +1,29 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Collections
 
-## Available Scripts
+Collections is a platform for professional and amateur photographers to showcase their work through albums (called "Collections"). This is a redesign of my original capstone project from BrainStation. This project also adds TypeScript for the front and back end.
 
-In the project directory, you can run:
+The site uses Mapbox GL JS to render a globe with markers showing images posted by users of the platform. This allows others to explore collections based on where the photos were taken.
 
-### `npm start`
+Clicking on a marker brings up the related photo as a popup, as well as the full collection along the bottom.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+**Client:** TypeScript, React, MapBox GL JS, SASS/BEM
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Server:** TypeScript, Node, Express, AWS, MySQL, Knex, Multer
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Related
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Back end repository: https://github.com/mannyv123/collections-server
+- Original project: https://collections-capstone.netlify.app/
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## Roadmap
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Project is currently under active development. Short term functionality to be added includes:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Creating new users and logging in
+- Adding new collections
