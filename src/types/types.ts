@@ -1,4 +1,6 @@
 //Type Definitions
+
+//Images within a collection
 export interface CollectionImages {
     id: string;
     title: string;
@@ -8,6 +10,7 @@ export interface CollectionImages {
     longitude: number;
 }
 
+//Collection
 export interface Collections {
     id: string;
     title: string;
@@ -16,6 +19,7 @@ export interface Collections {
     collection_images: CollectionImages[];
 }
 
+//Sign Up Form
 export interface FormTextInputs {
     username: string;
     password: string;
@@ -25,4 +29,18 @@ export interface FormTextInputs {
     last_name: string;
     about: string;
     setup: string;
+}
+
+//New User
+export interface newUser {
+    id: string;
+    username: string;
+    password: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    about: string;
+    setup: string;
+    profile_img: string;
+    cover_img: string;
 }
