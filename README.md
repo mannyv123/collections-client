@@ -7,6 +7,9 @@ The site uses Mapbox GL JS to render a globe with markers showing images posted 
 
 Clicking on a marker brings up the related photo as a popup, as well as the full collection along the bottom.
 
+## Demo
+
+![collections-demo](https://github.com/mannyv123/collections-client/assets/123426666/e46339d4-1134-4747-8f16-d67b400e73b5)
 
 ## Tech Stack
 
