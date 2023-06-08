@@ -44,15 +44,15 @@ function ProfilePage(): JSX.Element {
     return (
         <section className="profile">
             <div className="profile__header">
-                <div
-                    className="profile__cover-img-container"
-                    style={{
-                        backgroundImage: `url(${userProfile?.cover_img_url})`,
-                        backgroundSize: "cover",
-                        backgroundPosition: "center",
-                    }}
-                >
-                    <div className="profile__img-container">
+                <div className="profile__img-container">
+                    <div className="profile__cover-img-container">
+                        <img
+                            src={userProfile ? userProfile.cover_img_url : ""}
+                            alt="cover"
+                            className="profile__cover-img"
+                        />
+                    </div>
+                    <div className="profile__profile-img-container">
                         <img
                             src={userProfile ? userProfile.profile_img_url : ""}
                             alt="profile"
@@ -61,6 +61,7 @@ function ProfilePage(): JSX.Element {
                     </div>
                     <h1 className="profile__title">{userProfile ? userProfile.username : ""}</h1>
                 </div>
+
                 <div className="profile__sub-nav">
                     <ul className="profile__sub-nav-list">
                         <li className="profile__nav-item">
