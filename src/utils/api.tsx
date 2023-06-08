@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NewUser } from "../types/types";
+import { NewUser, UserProfile } from "../types/types";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -27,10 +27,10 @@ export async function createUser(newUser: NewUser, coverImg: File | undefined, p
 }
 
 //Get User Profile
-export async function getUserProfile(username: string) {
+export async function getUserProfile(username: string, callback: Function) {
     try {
-        const response = await axios.get(`${API_URL}/users/${username}`);
-        return response;
+        const response: UserProfile = await axios.get(`${API_URL}/users/${username}`);
+        callback(response);
     } catch (error) {
         console.error(error);
     }
