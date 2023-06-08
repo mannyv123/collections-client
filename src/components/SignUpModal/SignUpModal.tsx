@@ -57,9 +57,6 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
 
     const handleSignUpFormSubmit = async (event: FormEvent) => {
         event.preventDefault();
-        console.log("input values", inputValues);
-        console.log("cover img", coverImg);
-        console.log("profile img", profileImg);
 
         const { confirmPassword, ...rest } = inputValues;
         const newUser: NewUser = rest;
