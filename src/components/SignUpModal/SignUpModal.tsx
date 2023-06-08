@@ -3,7 +3,7 @@ import "./SignUpModal.scss";
 import CreateAccount from "../CreateAccount/CreateAccount";
 import CreateProfile from "../CreateProfile/CreateProfile";
 import CreateProfileImages from "../CreateProfileImages/CreateProfileImages";
-import { FormTextInputs } from "../../types/types";
+import { FormTextInputs, NewUser } from "../../types/types";
 import { MdClose } from "react-icons/md";
 import { createUser } from "../../utils/api";
 
@@ -66,9 +66,12 @@ function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
         //     images: profileImg,
         // };
 
+        const { confirmPassword, ...rest } = inputValues;
+        const newUser: NewUser = rest;
+
         //Function posts new user with API call
         try {
-            const response = await createUser(inputValues, coverImg, profileImg);
+            const response = await createUser(newUser, coverImg, profileImg);
             console.log(response);
         } catch (error) {
             console.error(error);
