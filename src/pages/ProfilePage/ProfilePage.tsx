@@ -103,7 +103,16 @@ function ProfilePage(): JSX.Element {
                 <Routes>
                     <Route path="map" element={<ViewCollections collections={userCollections} />} />
                     <Route path="gallery" element={<ImageGallery />} />
-                    <Route path="about" element={<AboutUser />} />
+                    <Route
+                        path="about"
+                        element={
+                            <AboutUser
+                                about={userProfile?.about}
+                                userFirst={userProfile?.first_name}
+                                userLast={userProfile?.last_name}
+                            />
+                        }
+                    />
                 </Routes>
             </div>
         </section>
