@@ -5,28 +5,29 @@ import CreateProfile from "../CreateProfile/CreateProfile";
 import CreateProfileImages from "../CreateProfileImages/CreateProfileImages";
 import { FormTextInputs } from "../../types/types";
 import { MdClose } from "react-icons/md";
+import { createUser } from "../../utils/api";
 
 interface SignUpModalProps {
     signUpDialogRef: RefObject<HTMLDialogElement>;
 }
 
 const initialValues: FormTextInputs = {
-    username: "",
-    password: "",
-    confirmPassword: "",
-    email: "",
-    first_name: "",
-    last_name: "",
-    about: "",
-    setup: "",
+    username: "manjotvirdi",
+    password: "password",
+    confirmPassword: "password",
+    email: "email@email.com",
+    first_name: "Manjot",
+    last_name: "Virdi",
+    about: "details",
+    setup: "setup",
 };
 
 function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
     const [signUpStep, setSignUpStep] = useState<string>("account");
     const [inputValues, setInputValues] = useState<FormTextInputs>(initialValues); //tracks form text inputs
-    const [coverImg, setCoverImg] = useState<{}>(); //tracks file data for cover img
+    const [coverImg, setCoverImg] = useState<File>(); //tracks file data for cover img
     const [coverImgUrl, setCoverImgUrl] = useState<string>(); //tracks temporary url for cover img preview
-    const [profileImg, setProfileImg] = useState<{}>(); //tracks file data for profile img
+    const [profileImg, setProfileImg] = useState<File>(); //tracks file data for profile img
     const [profileImgUrl, setProfileImgUrl] = useState<string>(); //tracks temporary url for profile img preview
 
     //Handles form input values
@@ -53,8 +54,26 @@ function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
         }
     };
 
-    console.log(inputValues);
-    const handleSignUpFormSubmit = () => {};
+    const handleSignUpFormSubmit = async (event: FormEvent) => {
+        event.preventDefault();
+        console.log("input values", inputValues);
+        console.log("cover img", coverImg);
+        console.log("profile img", profileImg);
+
+        // const newUser = {
+        //     ...inputValues,
+        //     images: coverImg,
+        //     images: profileImg,
+        // };
+
+        //Function posts new user with API call
+        try {
+            const response = await createUser(inputValues, coverImg, profileImg);
+            console.log(response);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <dialog ref={signUpDialogRef} className="signup">
@@ -68,7 +87,12 @@ function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
                 />
 
                 <h1 className="signup__title">Sign Up</h1>
-                <form action="submit" className="signup__form" onSubmit={handleSignUpFormSubmit}>
+                <form
+                    action="submit"
+                    className="signup__form"
+                    onSubmit={handleSignUpFormSubmit}
+                    encType="multipart/form-data"
+                >
                     {signUpStep === "account" && (
                         <CreateAccount
                             setSignUpStep={setSignUpStep}

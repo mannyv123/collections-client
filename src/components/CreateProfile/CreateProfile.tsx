@@ -23,11 +23,11 @@ function CreateProfile({ setSignUpStep, handleInputChange, inputValues }: Create
                     onChange={handleInputChange}
                     value={inputValues.first_name}
                 />
-                <label htmlFor="lastName">Add your first name:</label>
+                <label htmlFor="last_name">Add your first name:</label>
                 <input
                     type="text"
-                    name="lastName"
-                    id="lastName"
+                    name="last_name"
+                    id="last_name"
                     placeholder="Enter Your Last Name"
                     className="create-profile__input"
                     onChange={handleInputChange}

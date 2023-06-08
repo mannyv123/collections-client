@@ -32,8 +32,7 @@ export interface FormTextInputs {
 }
 
 //New User
-export interface newUser {
-    id: string;
+export interface NewUser {
     username: string;
     password: string;
     email: string;
@@ -41,6 +40,4 @@ export interface newUser {
     last_name: string;
     about: string;
     setup: string;
-    profile_img: string;
-    cover_img: string;
 }
