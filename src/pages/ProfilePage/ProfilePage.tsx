@@ -8,11 +8,11 @@ import { useEffect, useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import { Collections, UserProfile } from "../../types/types";
 import { apiUrl } from "../../App";
-import { getUserProfile } from "../../utils/api";
+import { getUserPosts, getUserProfile } from "../../utils/api";
 
 function ProfilePage(): JSX.Element {
     const [userProfile, setUserProfile] = useState<UserProfile>();
-
+    const [userCollections, setUserCollections] = useState<Collections[]>([]);
     //need to update
     // const [collections, setCollections] = useState<Collections[]>([]);
 
@@ -33,13 +33,22 @@ function ProfilePage(): JSX.Element {
 
     useEffect(() => {
         if (username) {
-            getUserProfile(username, (response: AxiosResponse) => {
-                setUserProfile(response.data[0]);
+            getUserProfile(username, (response: UserProfile) => {
+                setUserProfile(response);
             });
         }
     }, [username]);
 
+    useEffect(() => {
+        if (userProfile) {
+            getUserPosts(userProfile.id, (response: Collections[]) => {
+                setUserCollections(response);
+            });
+        }
+    }, [userProfile]);
+
     console.log(userProfile);
+    console.log(userCollections);
 
     return (
         <section className="profile">
@@ -92,7 +101,7 @@ function ProfilePage(): JSX.Element {
                 {/* <Outlet /> */}
 
                 <Routes>
-                    {/* <Route path="map" element={<ViewCollections collections={collections} />} /> */}
+                    <Route path="map" element={<ViewCollections collections={userCollections} />} />
                     <Route path="gallery" element={<ImageGallery />} />
                     <Route path="about" element={<AboutUser />} />
                 </Routes>

@@ -30,7 +30,18 @@ export async function createUser(newUser: NewUser, coverImg: File | undefined, p
 export async function getUserProfile(username: string, callback: Function) {
     try {
         const response = await axios.get(`${API_URL}/users/${username}`);
-        callback(response);
+        callback(response.data[0]);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+//Get User Collections/Posts
+export async function getUserPosts(userId: string, callback: Function) {
+    try {
+        const response = await axios.get(`${API_URL}/users/${userId}/posts`);
+        callback(response.data);
+        console.log(response);
     } catch (error) {
         console.error(error);
     }
