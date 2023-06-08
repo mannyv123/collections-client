@@ -9,6 +9,7 @@ import { createUser } from "../../utils/api";
 
 interface SignUpModalProps {
     signUpDialogRef: RefObject<HTMLDialogElement>;
+    loginDialogRef: RefObject<HTMLDialogElement>;
 }
 
 const initialValues: FormTextInputs = {
@@ -22,7 +23,7 @@ const initialValues: FormTextInputs = {
     setup: "setup",
 };
 
-function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
+function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX.Element {
     const [signUpStep, setSignUpStep] = useState<string>("account");
     const [inputValues, setInputValues] = useState<FormTextInputs>(initialValues); //tracks form text inputs
     const [coverImg, setCoverImg] = useState<File>(); //tracks file data for cover img
@@ -60,12 +61,6 @@ function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
         console.log("cover img", coverImg);
         console.log("profile img", profileImg);
 
-        // const newUser = {
-        //     ...inputValues,
-        //     images: coverImg,
-        //     images: profileImg,
-        // };
-
         const { confirmPassword, ...rest } = inputValues;
         const newUser: NewUser = rest;
 
@@ -73,6 +68,8 @@ function SignUpModal({ signUpDialogRef }: SignUpModalProps): JSX.Element {
         try {
             const response = await createUser(newUser, coverImg, profileImg);
             console.log(response);
+            signUpDialogRef.current?.close();
+            loginDialogRef.current?.showModal();
         } catch (error) {
             console.error(error);
         }

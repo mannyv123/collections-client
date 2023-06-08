@@ -48,7 +48,7 @@ function PageHeader(): JSX.Element {
                 </nav>
             </header>
             <LoginModal loginDialogRef={loginDialogRef} />
-            <SignUpModal signUpDialogRef={signUpDialogRef} />
+            <SignUpModal signUpDialogRef={signUpDialogRef} loginDialogRef={loginDialogRef} />
         </>
     );
 }
