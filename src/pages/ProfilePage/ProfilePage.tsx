@@ -74,17 +74,17 @@ function ProfilePage(): JSX.Element {
                 <div className="profile__sub-nav">
                     <ul className="profile__sub-nav-list">
                         <li className="profile__nav-item">
-                            <Link className="profile__nav-link" to="/:userId/map">
+                            <Link className="profile__nav-link" to={`/${username}/map`}>
                                 Map
                             </Link>
                         </li>
                         <li className="profile__nav-item">
-                            <Link className="profile__nav-link" to="/:userId/gallery">
+                            <Link className="profile__nav-link" to={`/${username}/gallery`}>
                                 Gallery
                             </Link>
                         </li>
                         <li className="profile__nav-item">
-                            <Link className="profile__nav-link" to="/:userId/about">
+                            <Link className="profile__nav-link" to={`/${username}/about`}>
                                 About
                             </Link>
                         </li>
@@ -102,7 +102,7 @@ function ProfilePage(): JSX.Element {
 
                 <Routes>
                     <Route path="map" element={<ViewCollections collections={userCollections} />} />
-                    <Route path="gallery" element={<ImageGallery />} />
+                    <Route path="gallery" element={<ImageGallery collections={userCollections} />} />
                     <Route
                         path="about"
                         element={
