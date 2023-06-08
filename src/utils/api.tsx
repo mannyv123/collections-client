@@ -25,3 +25,13 @@ export async function createUser(newUser: NewUser, coverImg: File | undefined, p
         console.error(error);
     }
 }
+
+//Get User Profile
+export async function getUserProfile(username: string) {
+    try {
+        const response = await axios.get(`${API_URL}/users/${username}`);
+        return response;
+    } catch (error) {
+        console.error(error);
+    }
+}
