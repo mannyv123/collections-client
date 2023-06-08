@@ -33,18 +33,33 @@ function ProfilePage(): JSX.Element {
 
     useEffect(() => {
         if (username) {
-            getUserProfile(username, (response: UserProfile) => {
-                setUserProfile(response);
+            getUserProfile(username, (response: AxiosResponse) => {
+                setUserProfile(response.data[0]);
             });
         }
     }, [username]);
 
+    console.log(userProfile);
+
     return (
         <section className="profile">
             <div className="profile__header">
-                <div className="profile__cover-img">
-                    <div className="profile__img"></div>
-                    <h1 className="profile__title">Welcome **USER**</h1>
+                <div
+                    className="profile__cover-img-container"
+                    style={{
+                        backgroundImage: `url(${userProfile?.cover_img_url})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                    }}
+                >
+                    <div className="profile__img-container">
+                        <img
+                            src={userProfile ? userProfile.profile_img_url : ""}
+                            alt="profile"
+                            className="profile__img"
+                        />
+                    </div>
+                    <h1 className="profile__title">{userProfile ? userProfile.username : ""}</h1>
                 </div>
                 <div className="profile__sub-nav">
                     <ul className="profile__sub-nav-list">

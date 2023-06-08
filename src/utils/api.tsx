@@ -29,7 +29,7 @@ export async function createUser(newUser: NewUser, coverImg: File | undefined, p
 //Get User Profile
 export async function getUserProfile(username: string, callback: Function) {
     try {
-        const response: UserProfile = await axios.get(`${API_URL}/users/${username}`);
+        const response = await axios.get(`${API_URL}/users/${username}`);
         callback(response);
     } catch (error) {
         console.error(error);
