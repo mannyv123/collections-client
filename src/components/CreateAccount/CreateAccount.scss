@@ -1,5 +1,9 @@
 .create-account {
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     &__title {
         margin-bottom: 3rem;
@@ -8,23 +12,23 @@
     &__form-inputs {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
     }
 
     &__input {
-        width: 15rem;
-        font-size: 1.25rem;
-        border-radius: 1rem;
+        width: 100%;
+        font-size: 1rem;
+        border-radius: 0.5rem;
         border: 1px solid black;
         padding: 0.5rem;
         margin-bottom: 0.75rem;
     }
 
     &__next {
-        margin-top: 3rem;
+        // margin-top: 3rem;
         border: 1px solid black;
-        border-radius: 1rem;
+        border-radius: 0.5rem;
         padding: 0.5rem 3rem;
-        width: 15rem;
+        width: 100%;
     }
 }
