@@ -1,6 +1,7 @@
 import { Dispatch, FormEvent, RefObject, SetStateAction, useState } from "react";
 import "./LoginModal.scss";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../utils/authContext";
 
 interface LoginModalProps {
     loginDialogRef: RefObject<HTMLDialogElement>;
@@ -14,6 +15,7 @@ const initialValues = {
 function LoginModal({ loginDialogRef }: LoginModalProps): JSX.Element {
     const navigate = useNavigate();
     const [loginInputs, setLoginInputs] = useState(initialValues);
+    const { isLoggedIn, handleLogin, handleLogout, username } = useAuth();
 
     const handleInputChange = (event: FormEvent<HTMLInputElement>) => {
         const { name, value } = event.currentTarget;
@@ -23,7 +25,8 @@ function LoginModal({ loginDialogRef }: LoginModalProps): JSX.Element {
     const handleLoginFormSubmit = (event: FormEvent) => {
         event.preventDefault();
 
-        localStorage.setItem("username", loginInputs.username);
+        // localStorage.setItem("username", loginInputs.username);
+        handleLogin(loginInputs.username);
         navigate(`/${loginInputs.username}/map`);
         loginDialogRef.current?.close();
     };

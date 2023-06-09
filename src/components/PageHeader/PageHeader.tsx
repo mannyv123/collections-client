@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./PageHeader.scss";
 import LoginModal from "../LoginModal/LoginModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
@@ -8,8 +8,13 @@ import { useAuth } from "../../utils/authContext";
 function PageHeader(): JSX.Element {
     const loginDialogRef = useRef<HTMLDialogElement>(null);
     const signUpDialogRef = useRef<HTMLDialogElement>(null);
+    const navigate = useNavigate();
+    const { isLoggedIn, handleLogin, handleLogout, username } = useAuth();
 
-    const { isLoggedIn, handleLogin, handleLogout } = useAuth();
+    const handleUserLogout = () => {
+        handleLogout();
+        navigate("/");
+    };
 
     return (
         <>
@@ -24,11 +29,13 @@ function PageHeader(): JSX.Element {
                                 Home
                             </Link>
                         </li>
-                        <li className="nav__item">
-                            <Link className="nav__link" to="/:userId/map">
-                                My Profile
-                            </Link>
-                        </li>
+                        {isLoggedIn && (
+                            <li className="nav__item">
+                                <Link className="nav__link" to="/:userId/map">
+                                    Profile
+                                </Link>
+                            </li>
+                        )}
                         <li
                             onClick={() => {
                                 loginDialogRef.current?.showModal();
@@ -46,7 +53,11 @@ function PageHeader(): JSX.Element {
                             Sign Up
                         </li>
                         {/* Will need to update scss for logout */}
-                        <li className="nav__item nav__item--modal">Logout</li>
+                        {isLoggedIn && (
+                            <li className="nav__item nav__item--modal" onClick={handleUserLogout}>
+                                Logout
+                            </li>
+                        )}
                     </ul>
                 </nav>
             </header>
