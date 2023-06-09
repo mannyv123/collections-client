@@ -1,9 +1,10 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { ReactNode, createContext, useContext, useState, useEffect } from "react";
 
 //Define type for context value
 interface AuthContextType {
     isLoggedIn: boolean;
-    handleLogin: () => void;
+    username: string | null;
+    handleLogin: (username: string) => void;
     handleLogout: () => void;
 }
 
@@ -28,17 +29,30 @@ interface AuthProviderProps {
 //AuthProvider component that manages the login status and provides the context value
 export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+    const [username, setUsername] = useState<string | null>(null);
 
-    const handleLogin = () => {
+    useEffect(() => {
+        const storedUsername = localStorage.getItem("username");
+        if (storedUsername) {
+            setIsLoggedIn(true);
+            setUsername(storedUsername);
+        }
+    }, []);
+
+    const handleLogin = (username: string) => {
         setIsLoggedIn(true);
+        setUsername(username);
+        localStorage.setItem("username", username);
     };
 
     const handleLogout = () => {
         setIsLoggedIn(false);
+        setUsername(null);
+        localStorage.removeItem("username");
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, handleLogin, handleLogout }}>
+        <AuthContext.Provider value={{ isLoggedIn, handleLogin, handleLogout, username }}>
             {children}
         </AuthContext.Provider>
     );
