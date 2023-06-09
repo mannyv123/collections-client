@@ -1,11 +1,25 @@
+import { ChangeEvent } from "react";
 import "./ImageCard.scss";
 
-// interface ImageCardProps {
-//     file: File;
-//     handleNameChange:
-// }
+interface ImageData {
+    file: File;
+    name: string;
+    latitude: number;
+    longitude: number;
+}
 
-function ImageCard(): JSX.Element {
+interface ImageCardProps {
+    // file: File;
+    handleNameChange: (file: File, name: string) => void;
+    index: number;
+    fileData: ImageData;
+}
+
+function ImageCard({ handleNameChange, index, fileData }: ImageCardProps): JSX.Element {
+    const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+        handleNameChange(fileData.file, event.target.value);
+    };
+
     return (
         <div className="img-card">
             <div className="img-card__image"></div>
@@ -16,6 +30,7 @@ function ImageCard(): JSX.Element {
                 id="imgName"
                 placeholder="Add a name for the Image"
                 className="img-card__input"
+                onChange={onNameChange}
             />
             <label htmlFor="latitude">Latitude:</label>
             <input

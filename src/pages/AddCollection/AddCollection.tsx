@@ -46,6 +46,13 @@ function AddCollection(): JSX.Element {
         setSelectedImages([...newFiles]);
     };
 
+    //Handles image name changes
+    const handleNameChange = (file: File, name: string) => {
+        setSelectedImages((prevImages) =>
+            prevImages.map((prevImage) => (prevImage.file === file ? { ...prevImage, name } : prevImage))
+        );
+    };
+
     console.log(selectedImages);
 
     return (
@@ -80,7 +87,12 @@ function AddCollection(): JSX.Element {
                             <input type="file" accept="image/*" multiple onChange={handleImageChange} />
                             <div className="add__images-container">
                                 {selectedImages.map((fileData, index) => (
-                                    <ImageCard key={index} />
+                                    <ImageCard
+                                        key={index}
+                                        handleNameChange={handleNameChange}
+                                        index={index}
+                                        fileData={fileData}
+                                    />
                                 ))}
                             </div>
                         </form>
