@@ -53,6 +53,15 @@ function AddCollection(): JSX.Element {
         );
     };
 
+    //Handles image coordinate changes
+    const handleCoordinatesChange = (file: File, latitude: number, longitude: number) => {
+        setSelectedImages((prevImages) =>
+            prevImages.map((prevImage) =>
+                prevImage.file === file ? { ...prevImage, latitude, longitude } : prevImage
+            )
+        );
+    };
+
     console.log(selectedImages);
 
     return (
@@ -90,6 +99,7 @@ function AddCollection(): JSX.Element {
                                     <ImageCard
                                         key={index}
                                         handleNameChange={handleNameChange}
+                                        handleCoordinatesChange={handleCoordinatesChange}
                                         index={index}
                                         fileData={fileData}
                                     />
