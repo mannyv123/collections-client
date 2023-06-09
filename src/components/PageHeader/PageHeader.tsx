@@ -31,7 +31,7 @@ function PageHeader(): JSX.Element {
                         </li>
                         {isLoggedIn && (
                             <li className="nav__item">
-                                <Link className="nav__link" to="/:userId/map">
+                                <Link className="nav__link" to={`/${username}/map`}>
                                     Profile
                                 </Link>
                             </li>
