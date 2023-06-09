@@ -9,10 +9,13 @@ import axios, { AxiosResponse } from "axios";
 import { Collections, UserProfile } from "../../types/types";
 import { apiUrl } from "../../App";
 import { getUserPosts, getUserProfile } from "../../utils/api";
+import { useAuth } from "../../utils/authContext";
 
 function ProfilePage(): JSX.Element {
     const [userProfile, setUserProfile] = useState<UserProfile>();
     const [userCollections, setUserCollections] = useState<Collections[]>([]);
+
+    const { isLoggedIn } = useAuth();
     //need to update
     // const [collections, setCollections] = useState<Collections[]>([]);
 
@@ -89,9 +92,11 @@ function ProfilePage(): JSX.Element {
                             </Link>
                         </li>
                     </ul>
-                    <div className="profile__add-collection">
-                        <p>Add a Collection</p>
-                    </div>
+                    {isLoggedIn && (
+                        <div className="profile__add-collection">
+                            <p>Add a Collection</p>
+                        </div>
+                    )}
                 </div>
             </div>
             <div className="profile__content">
