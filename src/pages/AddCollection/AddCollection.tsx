@@ -46,6 +46,8 @@ function AddCollection(): JSX.Element {
         setSelectedImages([...newFiles]);
     };
 
+    console.log(selectedImages);
+
     return (
         <>
             {isLoggedIn ? (
@@ -77,8 +79,8 @@ function AddCollection(): JSX.Element {
                             <h3 className="add__sub-title">Add Images</h3>
                             <input type="file" accept="image/*" multiple onChange={handleImageChange} />
                             <div className="add__images-container">
-                                {selectedImages.map((fileData) => (
-                                    <ImageCard />
+                                {selectedImages.map((fileData, index) => (
+                                    <ImageCard key={index} />
                                 ))}
                             </div>
                         </form>
