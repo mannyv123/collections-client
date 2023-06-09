@@ -1,5 +1,10 @@
 import "./ImageCard.scss";
 
+// interface ImageCardProps {
+//     file: File;
+//     handleNameChange:
+// }
+
 function ImageCard(): JSX.Element {
     return (
         <div className="img-card">

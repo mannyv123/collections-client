@@ -2,14 +2,28 @@ import ImageCard from "../../components/ImageCard/ImageCard";
 import "./AddCollection.scss";
 import { getUserProfile } from "../../utils/api";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { UserProfile } from "../../types/types";
 import { useAuth } from "../../utils/authContext";
+
+interface ImageData {
+    file: File;
+    name: string;
+    latitude: number;
+    longitude: number;
+}
+
+interface Collection {
+    title: string;
+    description: string;
+    images: ImageData[];
+}
 
 function AddCollection(): JSX.Element {
     const [userId, setUserId] = useState<string>();
     const { username } = useParams();
     const { isLoggedIn } = useAuth();
+    const [selectedImages, setSelectedImages] = useState<ImageData[]>([]); //Tracks images to be uploaded / included in collection
 
     useEffect(() => {
         if (username) {
@@ -19,7 +33,18 @@ function AddCollection(): JSX.Element {
         }
     }, [username]);
 
-    console.log("is logged in ", isLoggedIn);
+    //Sets array of images with default values for each image
+    const handleImageChange = (event: ChangeEvent<HTMLInputElement>) => {
+        const files = Array.from(event.currentTarget.files || []);
+
+        const newFiles: ImageData[] = files.map((file) => ({
+            file,
+            name: "",
+            latitude: 0,
+            longitude: 0,
+        }));
+        setSelectedImages([...newFiles]);
+    };
 
     return (
         <>
@@ -50,12 +75,11 @@ function AddCollection(): JSX.Element {
                                 className="add__input add__input--textarea"
                             ></textarea>
                             <h3 className="add__sub-title">Add Images</h3>
+                            <input type="file" accept="image/*" multiple onChange={handleImageChange} />
                             <div className="add__images-container">
-                                {/* Temporary */}
-                                <ImageCard />
-                                <ImageCard />
-                                <ImageCard />
-                                <ImageCard />
+                                {selectedImages.map((fileData) => (
+                                    <ImageCard />
+                                ))}
                             </div>
                         </form>
                     </div>
