@@ -41,3 +41,12 @@ export interface NewUser {
     about: string;
     setup: string;
 }
+
+//User Profile
+type ExcludedProperties = "password" | "email";
+
+export interface UserProfile extends Omit<NewUser, ExcludedProperties> {
+    cover_img_url: string;
+    profile_img_url: string;
+    id: string;
+}

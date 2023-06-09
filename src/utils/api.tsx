@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NewUser } from "../types/types";
+import { NewUser, UserProfile } from "../types/types";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -21,6 +21,27 @@ export async function createUser(newUser: NewUser, coverImg: File | undefined, p
 
         const response = await axios.post(`${API_URL}/users/`, formData);
         return response;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+//Get User Profile
+export async function getUserProfile(username: string, callback: Function) {
+    try {
+        const response = await axios.get(`${API_URL}/users/${username}`);
+        callback(response.data[0]);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+//Get User Collections/Posts
+export async function getUserPosts(userId: string, callback: Function) {
+    try {
+        const response = await axios.get(`${API_URL}/users/${userId}/posts`);
+        callback(response.data);
+        console.log(response);
     } catch (error) {
         console.error(error);
     }

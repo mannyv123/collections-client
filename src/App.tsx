@@ -22,7 +22,7 @@ function App(): JSX.Element {
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/home" element={<Navigate to="/" />} />
-                    <Route path="/:userId/*" element={<ProfilePage />} />
+                    <Route path="/:username/*" element={<ProfilePage />} />
                     {/* <Route path="/:userId" element={<ProfilePage />}>
                         <Route path="/:userId/map" element={<ViewCollections />} />
                         <Route path="/:userId/gallery" element={<ImageGallery />} />
