@@ -36,23 +36,27 @@ function PageHeader(): JSX.Element {
                                 </Link>
                             </li>
                         )}
-                        <li
-                            onClick={() => {
-                                loginDialogRef.current?.showModal();
-                            }}
-                            className="nav__item nav__item--modal"
-                        >
-                            Login
-                        </li>
-                        <li
-                            onClick={() => {
-                                signUpDialogRef.current?.showModal();
-                            }}
-                            className="nav__item nav__item--modal"
-                        >
-                            Sign Up
-                        </li>
-                        {/* Will need to update scss for logout */}
+                        {!isLoggedIn && (
+                            <>
+                                <li
+                                    onClick={() => {
+                                        loginDialogRef.current?.showModal();
+                                    }}
+                                    className="nav__item nav__item--modal"
+                                >
+                                    Login
+                                </li>
+
+                                <li
+                                    onClick={() => {
+                                        signUpDialogRef.current?.showModal();
+                                    }}
+                                    className="nav__item nav__item--modal"
+                                >
+                                    Sign Up
+                                </li>
+                            </>
+                        )}
                         {isLoggedIn && (
                             <li className="nav__item nav__item--modal" onClick={handleUserLogout}>
                                 Logout
