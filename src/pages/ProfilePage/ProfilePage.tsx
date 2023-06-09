@@ -93,9 +93,11 @@ function ProfilePage(): JSX.Element {
                         </li>
                     </ul>
                     {isLoggedIn && (
-                        <div className="profile__add-collection">
-                            <p>Add a Collection</p>
-                        </div>
+                        <Link to={`/${username}/add`}>
+                            <div className="profile__add-collection">
+                                <p>Add a Collection</p>
+                            </div>
+                        </Link>
                     )}
                 </div>
             </div>
