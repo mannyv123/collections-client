@@ -1,12 +1,15 @@
-import { useRef } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./PageHeader.scss";
 import LoginModal from "../LoginModal/LoginModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
+import { useAuth } from "../../utils/authContext";
 
 function PageHeader(): JSX.Element {
     const loginDialogRef = useRef<HTMLDialogElement>(null);
     const signUpDialogRef = useRef<HTMLDialogElement>(null);
+
+    const { isLoggedIn, handleLogin, handleLogout } = useAuth();
 
     return (
         <>

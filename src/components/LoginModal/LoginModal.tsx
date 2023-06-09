@@ -1,4 +1,4 @@
-import { FormEvent, RefObject, useState } from "react";
+import { Dispatch, FormEvent, RefObject, SetStateAction, useState } from "react";
 import "./LoginModal.scss";
 import { useNavigate } from "react-router-dom";
 
