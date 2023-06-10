@@ -46,3 +46,13 @@ export async function getUserPosts(userId: string, callback: Function) {
         console.error(error);
     }
 }
+
+//Post New Collection
+export async function postCollection(userId: string, collection: FormData) {
+    try {
+        const response = await axios.post(`${API_URL}/users/${userId}/posts`, collection);
+        console.log(response);
+    } catch (error) {
+        console.error(error);
+    }
+}

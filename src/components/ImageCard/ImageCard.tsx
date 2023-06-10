@@ -12,20 +12,17 @@ interface ImageCardProps {
     // file: File;
     handleNameChange: (file: File, name: string) => void;
     handleCoordinatesChange: (file: File, latitude: number, longitude: number) => void;
-    index: number;
+
     fileData: ImageData;
 }
 
-function ImageCard({
-    handleNameChange,
-    handleCoordinatesChange,
-    index,
-    fileData,
-}: ImageCardProps): JSX.Element {
+function ImageCard({ handleNameChange, handleCoordinatesChange, fileData }: ImageCardProps): JSX.Element {
+    const [name, setName] = useState<string>("");
     const [latitude, setLatitude] = useState<number>(0);
     const [longitude, setLongitude] = useState<number>(0);
 
     const onNameChange = (event: ChangeEvent<HTMLInputElement>) => {
+        setName(event.target.value);
         handleNameChange(fileData.file, event.target.value);
     };
 
@@ -41,7 +38,13 @@ function ImageCard({
 
     return (
         <div className="img-card">
-            <div className="img-card__image"></div>
+            <div className="img-card__image">
+                <img
+                    className="img-card__image-file"
+                    src={URL.createObjectURL(fileData.file)}
+                    alt="preview"
+                />
+            </div>
             <label htmlFor="imgName">Name:</label>
             <input
                 type="text"
@@ -49,6 +52,7 @@ function ImageCard({
                 id="imgName"
                 placeholder="Add a name for the Image"
                 className="img-card__input"
+                value={name}
                 onChange={onNameChange}
             />
             <label htmlFor="latitude">Latitude:</label>

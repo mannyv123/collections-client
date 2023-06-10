@@ -2,7 +2,7 @@ import ImageCard from "../../components/ImageCard/ImageCard";
 import "./AddCollection.scss";
 import { getUserProfile } from "../../utils/api";
 import { useParams } from "react-router-dom";
-import { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { UserProfile } from "../../types/types";
 import { useAuth } from "../../utils/authContext";
 
@@ -24,6 +24,8 @@ function AddCollection(): JSX.Element {
     const { username } = useParams();
     const { isLoggedIn } = useAuth();
     const [selectedImages, setSelectedImages] = useState<ImageData[]>([]); //Tracks images to be uploaded / included in collection
+    const [title, setTitle] = useState<string>("");
+    const [description, setDescription] = useState<string>("");
 
     useEffect(() => {
         if (username) {
@@ -43,6 +45,7 @@ function AddCollection(): JSX.Element {
             latitude: 0,
             longitude: 0,
         }));
+
         setSelectedImages([...newFiles]);
     };
 
@@ -62,6 +65,16 @@ function AddCollection(): JSX.Element {
         );
     };
 
+    //Handle form submission
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+
+        //Prepare form data
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("description", description);
+    };
+
     console.log(selectedImages);
 
     return (
@@ -70,7 +83,7 @@ function AddCollection(): JSX.Element {
                 <section className="add">
                     <h1 className="add__title">Add a Collection</h1>
                     <div className="add__container">
-                        <form action="submit" className="add__form">
+                        <form action="submit" className="add__form" onSubmit={handleSubmit}>
                             <div className="add__header">
                                 <h3 className="add__sub-title">Add Collection Details</h3>
                                 <button type="submit" className="add__create-btn">
@@ -84,6 +97,8 @@ function AddCollection(): JSX.Element {
                                 id="title"
                                 placeholder="Add a title for your Collection"
                                 className="add__input"
+                                onChange={(event) => setTitle(event.target.value)}
+                                value={title}
                             />
                             <label htmlFor="description">Description:</label>
                             <textarea
@@ -91,6 +106,8 @@ function AddCollection(): JSX.Element {
                                 id="description"
                                 placeholder="Add a description for your Collection"
                                 className="add__input add__input--textarea"
+                                onChange={(event) => setDescription(event.target.value)}
+                                value={description}
                             ></textarea>
                             <h3 className="add__sub-title">Add Images</h3>
                             <input type="file" accept="image/*" multiple onChange={handleImageChange} />
@@ -100,7 +117,6 @@ function AddCollection(): JSX.Element {
                                         key={index}
                                         handleNameChange={handleNameChange}
                                         handleCoordinatesChange={handleCoordinatesChange}
-                                        index={index}
                                         fileData={fileData}
                                     />
                                 ))}
