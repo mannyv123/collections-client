@@ -26,7 +26,7 @@ function App(): JSX.Element {
                         <Route path="/" element={<LandingPage />} />
                         <Route path="/home" element={<Navigate to="/" />} />
                         <Route path="/:username/*" element={<ProfilePage />} />
-                        <Route path="/:userId/add" element={<AddCollection />} />
+                        <Route path="/:username/add" element={<AddCollection />} />
                     </Routes>
                 </AuthProvider>
             </BrowserRouter>

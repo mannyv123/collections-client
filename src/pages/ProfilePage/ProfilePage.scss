@@ -118,6 +118,10 @@
             cursor: pointer;
             background-color: lightcyan; //temporary
         }
+
+        &--link {
+            text-decoration: none;
+        }
     }
 
     // &__content {
