@@ -1,6 +1,17 @@
 .map-container {
     width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: center;
+    // justify-content: center;
     // height: 100%;
 }
+
+// .map {
+//     &__globe-container {
+//         width: 80%;
+//         height: 100%;
+//         display: flex;
+
+//         transform: translate(225px);
+//     }
+// }
