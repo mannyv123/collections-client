@@ -1,10 +1,11 @@
 import ImageCard from "../../components/ImageCard/ImageCard";
 import "./AddCollection.scss";
-import { getUserProfile } from "../../utils/api";
+import { getUserProfile, postCollection } from "../../utils/api";
 import { useParams } from "react-router-dom";
 import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import { UserProfile } from "../../types/types";
 import { useAuth } from "../../utils/authContext";
+import { AxiosResponse } from "axios";
 
 interface ImageData {
     file: File;
@@ -20,7 +21,7 @@ interface Collection {
 }
 
 function AddCollection(): JSX.Element {
-    const [userId, setUserId] = useState<string>();
+    const [userId, setUserId] = useState<string>("");
     const { username } = useParams();
     const { isLoggedIn } = useAuth();
     const [selectedImages, setSelectedImages] = useState<ImageData[]>([]); //Tracks images to be uploaded / included in collection
@@ -73,6 +74,17 @@ function AddCollection(): JSX.Element {
         const formData = new FormData();
         formData.append("title", title);
         formData.append("description", description);
+        selectedImages.forEach((image) => {
+            formData.append("images", image.file);
+            formData.append("names", image.name);
+            formData.append("latitudes", image.latitude.toString());
+            formData.append("longitudes", image.longitude.toString());
+        });
+
+        //Send form data to backend API
+        postCollection(userId, formData, (response: AxiosResponse) => {
+            console.log(response);
+        });
     };
 
     console.log(selectedImages);
