@@ -18,11 +18,6 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function MapBox({ collections }: MapBoxProps): JSX.Element {
     const [viewPost, setViewPost] = useState<Boolean>(false);
-    const [mapStyling, setMapStyling] = useState<CSSProperties>({
-        width: "100%",
-        height: "100%",
-        display: "flex",
-    });
     // const [currentPos, setCurrentPos] = useState({ latitude: 37.8, longitude: -122.4, zoom: 2 });
     const [viewState, setViewState] = useState<View>({
         latitude: 49.285283,
@@ -57,23 +52,6 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
         }
     };
 
-    useEffect(() => {
-        if (viewPost) {
-            setMapStyling({
-                width: "80%",
-                height: "100%",
-                display: "flex",
-                transform: "translate(225px)",
-            });
-        } else {
-            setMapStyling({
-                width: "100%",
-                height: "100%",
-                display: "flex",
-            });
-        }
-    }, [viewPost]);
-
     const handleMarkerClick = (
         event: MapboxEvent<MouseEvent>,
         imageId: string,
@@ -98,7 +76,7 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
     return (
         <section className="map-container" onClick={() => setViewPost(false)}>
             {viewPost && selected && <ViewPost selected={selected} selectedImgIndex={selectedImgIndex} />}
-            <div className="map__globe-container" style={mapStyling}>
+            <div className={`map__globe-container ${viewPost ? "map__globe-container--viewpost" : ""}`}>
                 <Map
                     // initialViewState={currentPos}
                     // {...currentPos}
