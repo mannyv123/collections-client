@@ -74,9 +74,14 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
     // console.log(currentPos);
 
     return (
-        <section className="map-container" onClick={() => setViewPost(false)}>
+        <section className="map-container">
             {viewPost && selected && <ViewPost selected={selected} selectedImgIndex={selectedImgIndex} />}
-            <div className={`map__globe-container ${viewPost ? "map__globe-container--viewpost" : ""}`}>
+            <div
+                onClick={() => {
+                    setViewPost(false);
+                }}
+                className={`map__globe-container ${viewPost ? "map__globe-container--viewpost" : ""}`}
+            >
                 <Map
                     // initialViewState={currentPos}
                     // {...currentPos}

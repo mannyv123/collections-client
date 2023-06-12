@@ -39,7 +39,7 @@
         overflow-y: auto;
 
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
         grid-gap: 0;
     }
 
