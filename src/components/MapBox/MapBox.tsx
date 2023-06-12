@@ -1,8 +1,8 @@
+import "mapbox-gl/dist/mapbox-gl.css";
 import "./MapBox.scss";
 import Map, { MapboxEvent, Marker, MapRef } from "react-map-gl";
-import "mapbox-gl/dist/mapbox-gl.css";
 import { Collections } from "../../types/types";
-import { useEffect, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 import ViewPost from "../ViewPost/ViewPost";
 
 interface MapBoxProps {
@@ -17,7 +17,7 @@ interface View {
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function MapBox({ collections }: MapBoxProps): JSX.Element {
-    const [viewPost, setViewPost] = useState<Boolean>(true);
+    const [viewPost, setViewPost] = useState<Boolean>(false);
     // const [currentPos, setCurrentPos] = useState({ latitude: 37.8, longitude: -122.4, zoom: 2 });
     const [viewState, setViewState] = useState<View>({
         latitude: 49.285283,
@@ -75,41 +75,48 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
 
     return (
         <section className="map-container" onClick={() => setViewPost(false)}>
-            <Map
-                // initialViewState={currentPos}
-                // {...currentPos}
-                {...viewState}
-                onLoad={getLocation}
-                onMove={(evt) => setViewState(evt.viewState)}
-                style={{ width: "100vw", height: "93.5vh" }}
-                mapStyle="mapbox://styles/mapbox/light-v11"
-                mapboxAccessToken={MAPBOX_TOKEN}
-                projection="globe"
-                ref={mapRef}
-            >
-                {collections.map((collection) =>
-                    collection.collection_images.map((image) => (
-                        <Marker
-                            key={image.id}
-                            style={{ cursor: "pointer" }}
-                            longitude={image.longitude}
-                            latitude={image.latitude}
-                            color="red"
-                            onClick={(event) =>
-                                handleMarkerClick(
-                                    event,
-                                    image.id,
-                                    collection.id,
-                                    image.longitude,
-                                    image.latitude
-                                )
-                            }
-                        />
-                    ))
-                )}
-                {/* <Marker longitude={-122.4} latitude={37.8} color="red" /> */}
-            </Map>
             {viewPost && selected && <ViewPost selected={selected} selectedImgIndex={selectedImgIndex} />}
+            <div className={`map__globe-container ${viewPost ? "map__globe-container--viewpost" : ""}`}>
+                <Map
+                    // initialViewState={currentPos}
+                    // {...currentPos}
+                    {...viewState}
+                    onLoad={getLocation}
+                    onMove={(evt) => setViewState(evt.viewState)}
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                        position: "relative",
+                    }}
+                    mapStyle="mapbox://styles/mapbox/light-v11"
+                    mapboxAccessToken={MAPBOX_TOKEN}
+                    projection="globe"
+                    ref={mapRef}
+                    // styleDiffing={true}
+                >
+                    {collections.map((collection) =>
+                        collection.collection_images.map((image) => (
+                            <Marker
+                                key={image.id}
+                                style={{ cursor: "pointer" }}
+                                longitude={image.longitude}
+                                latitude={image.latitude}
+                                color="red"
+                                onClick={(event) =>
+                                    handleMarkerClick(
+                                        event,
+                                        image.id,
+                                        collection.id,
+                                        image.longitude,
+                                        image.latitude
+                                    )
+                                }
+                            />
+                        ))
+                    )}
+                    {/* <Marker longitude={-122.4} latitude={37.8} color="red" /> */}
+                </Map>
+            </div>
         </section>
     );
 }

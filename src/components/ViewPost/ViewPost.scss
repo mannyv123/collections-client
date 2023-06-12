@@ -1,8 +1,10 @@
 .view-post {
     position: absolute;
-    bottom: 0;
-    // height: 13rem;
-    width: 100%;
+    // bottom: 0;
+    // left: 0;
+    height: 100%;
+    width: 30%;
+    // height: 93.5vh;
 
     z-index: 2;
 
@@ -11,23 +13,55 @@
     padding: 1rem;
 
     &__imgs-container {
+        width: 100%;
         display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        height: 95%;
     }
 
     &__selected-img {
-        width: 15rem;
-        height: 10rem;
+        width: 100%;
+        height: 15rem;
         object-fit: cover;
     }
 
     &__other-imgs-container {
-        display: flex;
-        overflow: hidden;
+        background-color: lightblue;
+        // width: 100%;
+        // display: flex;
+        // flex-direction: column;
+        // overflow: hidden;
+        // align-items: center;
+        // height: 100%;
+        // flex-wrap: wrap;
+        overflow-y: auto;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr));
+        grid-gap: 0;
     }
 
     &__other-imgs {
-        width: 15rem;
-        height: 10rem;
+        // width: 15rem;
+        // height: 10rem;
         object-fit: cover;
+        // flex: 1 0 20%;
+        // min-width: 6.25rem;
+        // min-height: 6.25rem;
+
+        width: 100%;
+        height: 100%;
+
+        // &--portrait {
+        //     max-width: 3rem;
+        //     // max-height: 6.25rem;
+        // }
+
+        // &--landscape {
+        //     max-height: 3rem;
+        //     // max-width: 6.25rem;
+        // }
     }
 }

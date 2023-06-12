@@ -1,6 +1,6 @@
 import "./ViewPost.scss";
 import { Collections } from "../../types/types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface ViewPostProps {
     selected: Collections;
@@ -9,10 +9,12 @@ interface ViewPostProps {
 
 function ViewPost({ selected, selectedImgIndex }: ViewPostProps): JSX.Element {
     // const [currentImgIndex, setCurrentImgIndex] = useState<number>(selectedImgIndex);
+
     console.log(selected);
     const otherImgs = selected.collection_images.filter(
         (image) => image.id !== selected.collection_images[selectedImgIndex].id
     );
+
     return (
         <section className="view-post">
             <h3 className="view-post__title">{selected.title}</h3>
@@ -24,7 +26,7 @@ function ViewPost({ selected, selectedImgIndex }: ViewPostProps): JSX.Element {
                     className="view-post__selected-img"
                 />
                 <div className="view-post__other-imgs-container">
-                    {otherImgs.map((image) => (
+                    {otherImgs.map((image, index) => (
                         <img
                             key={image.id}
                             src={image.imageUrl}
