@@ -1,6 +1,13 @@
 import { Collections } from "../../types/types";
 import "./FullscreenModal.scss";
 import { Dispatch, FormEvent, RefObject, SetStateAction, useEffect, useState } from "react";
+import {
+    MdOutlineNavigateBefore,
+    MdOutlineNavigateNext,
+    MdOutlinePhotoSizeSelectActual,
+    MdOutlineThumbUp,
+    MdOutlineInsertComment,
+} from "react-icons/md";
 
 interface FullscreenModalProps {
     fullImageRef: RefObject<HTMLDialogElement>;
@@ -29,11 +36,19 @@ function FullscreenModal({ fullImageRef, selectedPost, showImageIndex }: Fullscr
 
     return (
         <dialog ref={fullImageRef} className="fullscreen">
-            <img
-                className="fullscreen__img"
-                src={selectedPost.collection_images[currentImageIndex].imageUrl}
-                alt="current"
-            />
+            <div className="fullscreen__container">
+                <div className="fullscreen__nav fullscreen__nav--prev" onClick={prevImage}>
+                    <MdOutlineNavigateBefore className="fullscreen__nav-icon" />
+                </div>
+                <div className="fullscreen__nav fullscreen__nav--next" onClick={nextImage}>
+                    <MdOutlineNavigateNext className="fullscreen__nav-icon" />
+                </div>
+                <img
+                    className="fullscreen__img"
+                    src={selectedPost.collection_images[currentImageIndex].imageUrl}
+                    alt="current"
+                />
+            </div>
         </dialog>
     );
 }
