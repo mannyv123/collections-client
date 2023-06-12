@@ -45,7 +45,13 @@ function ViewPost({ selected, selectedImgIndex }: ViewPostProps): JSX.Element {
                                 src={image.imageUrl}
                                 alt="remaining"
                                 className="view-post__other-imgs"
-                                onClick={() => openModal(selected.collection_images[index])}
+                                onClick={() =>
+                                    openModal(
+                                        selected.collection_images.find(
+                                            (currImage) => currImage.id === image.id
+                                        )!
+                                    )
+                                }
                             />
                         ))}
                     </div>

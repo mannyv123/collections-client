@@ -28,8 +28,12 @@ function FullscreenModal({ fullImageRef, selectedPost, showImageIndex }: Fullscr
     };
 
     return (
-        <dialog ref={fullImageRef}>
-            <img src={selectedPost.collection_images[currentImageIndex].imageUrl} alt="current" />
+        <dialog ref={fullImageRef} className="fullscreen">
+            <img
+                className="fullscreen__img"
+                src={selectedPost.collection_images[currentImageIndex].imageUrl}
+                alt="current"
+            />
         </dialog>
     );
 }
