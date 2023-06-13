@@ -2,7 +2,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import "./MapBox.scss";
 import Map, { MapboxEvent, Marker, MapRef } from "react-map-gl";
 import { Collections } from "../../types/types";
-import { CSSProperties, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ViewPost from "../ViewPost/ViewPost";
 
 interface MapBoxProps {
@@ -18,7 +18,6 @@ const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function MapBox({ collections }: MapBoxProps): JSX.Element {
     const [viewPost, setViewPost] = useState<Boolean>(false);
-    // const [currentPos, setCurrentPos] = useState({ latitude: 37.8, longitude: -122.4, zoom: 2 });
     const [viewState, setViewState] = useState<View>({
         latitude: 49.285283,
         longitude: -123.115044,
@@ -27,8 +26,6 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
     const [selected, setSelected] = useState<Collections>();
     const [selectedImgIndex, setSelectedImgIndex] = useState<number>(0);
     const mapRef = useRef<MapRef | null>(null);
-
-    console.log(viewPost);
 
     useEffect(() => {
         getLocation();
@@ -60,18 +57,16 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
         imageLat: number
     ) => {
         event.originalEvent.stopPropagation();
-        console.log("I clicked it", imageId, collectionId);
+
         const selectedCollection = collections.find((collection) => collection.id === collectionId)!;
         const selectedImageIndex = selectedCollection.collection_images.findIndex(
             (image) => image.id === imageId
         );
         setSelected(selectedCollection);
         setSelectedImgIndex(selectedImageIndex);
-        // setViewState({ latitude: imageLat, longitude: imageLng, zoom: 4 });
         mapRef.current?.flyTo({ center: [imageLng, imageLat], duration: 2000 });
         if (!viewPost) setViewPost(true);
     };
-    // console.log(currentPos);
 
     return (
         <section className="map-container">
@@ -83,8 +78,6 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
                 className={`map__globe-container ${viewPost ? "map__globe-container--viewpost" : ""}`}
             >
                 <Map
-                    // initialViewState={currentPos}
-                    // {...currentPos}
                     {...viewState}
                     onLoad={getLocation}
                     onMove={(evt) => setViewState(evt.viewState)}
@@ -97,7 +90,6 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
                     mapboxAccessToken={MAPBOX_TOKEN}
                     projection="globe"
                     ref={mapRef}
-                    // styleDiffing={true}
                 >
                     {collections.map((collection) =>
                         collection.collection_images.map((image) => (

@@ -2,15 +2,13 @@
     width: 100%;
     height: 100%;
     display: flex;
-    // justify-content: center;
-    // height: 100%;
 }
 
 .map {
     &__globe-container {
         width: 100%;
         height: 100%;
-        // display: flex;
+        transition: transform 0.3s ease-in-out;
 
         &--viewpost {
             width: 80%;
