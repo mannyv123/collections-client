@@ -13,14 +13,14 @@ interface SignUpModalProps {
 }
 
 const initialValues: FormTextInputs = {
-    username: "manjotvirdi",
-    password: "password",
-    confirmPassword: "password",
-    email: "email@email.com",
-    first_name: "Manjot",
-    last_name: "Virdi",
-    about: "details",
-    setup: "setup",
+    username: "",
+    password: "",
+    confirmPassword: "",
+    email: "",
+    first_name: "",
+    last_name: "",
+    about: "",
+    setup: "",
 };
 
 function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX.Element {
@@ -55,7 +55,7 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
         }
     };
 
-    const handleSignUpFormSubmit = async (event: FormEvent) => {
+    const handleSignUpFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const { confirmPassword, ...rest } = inputValues;
@@ -67,6 +67,14 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
             console.log(response);
             signUpDialogRef.current?.close();
             loginDialogRef.current?.showModal();
+
+            //Reset form values
+            setInputValues(initialValues);
+            setCoverImg(undefined);
+            setCoverImgUrl(undefined);
+            setProfileImg(undefined);
+            setProfileImgUrl(undefined);
+            setSignUpStep("account");
         } catch (error) {
             console.error(error);
         }
