@@ -8,6 +8,24 @@
     padding: 1rem;
     background-color: rgba($color: $light-blue, $alpha: 20%);
 
+    &__username {
+        margin: 0.5rem 0;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        padding: 0.25rem 1rem;
+        width: fit-content;
+
+        &:hover {
+            background-color: $dark-blue;
+            color: $white;
+        }
+    }
+
+    &__username-link {
+        text-decoration: none;
+        color: black;
+    }
+
     &__imgs-container {
         width: 100%;
         display: flex;

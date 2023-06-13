@@ -5,6 +5,7 @@ import FullscreenModal from "../FullscreenModal/FullscreenModal";
 import { CollectionImages } from "../../types/types";
 import { getUsername } from "../../utils/api";
 import { AxiosResponse } from "axios";
+import { Link } from "react-router-dom";
 
 interface ViewPostProps {
     selected: Collections;
@@ -37,7 +38,9 @@ function ViewPost({ selected, selectedImgIndex }: ViewPostProps): JSX.Element {
         <>
             <section className="view-post">
                 <h3 className="view-post__title">{selected.title}</h3>
-                <p>{username}</p>
+                <Link to={`/${username}/map`} className="view-post__username-link">
+                    <p className="view-post__username">{username}</p>
+                </Link>
                 <div className="view-post__imgs-container">
                     <img
                         src={selected.collection_images[selectedImgIndex].imageUrl}
