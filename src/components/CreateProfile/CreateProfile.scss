@@ -25,11 +25,11 @@
         padding: 0.5rem;
         margin-bottom: 0.75rem;
         background-color: $input-bg;
+        font-family: $primary-font;
 
         &--textarea {
             resize: none;
             font-size: 1rem;
-            font-family: $primary-font;
         }
     }
 
