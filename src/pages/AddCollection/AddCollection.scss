@@ -6,6 +6,7 @@
     &__form {
         display: flex;
         flex-direction: column;
+        margin-bottom: 10rem;
     }
 
     &__header {
@@ -15,8 +16,11 @@
     }
 
     &__create-btn {
+        position: fixed;
+        top: 14%;
+        right: 3rem;
+
         width: 10rem;
-        border: 1px solid black;
         padding: 0.5rem 0;
         border-radius: 0.5rem;
         background-color: $light-blue;
@@ -42,6 +46,29 @@
             height: 10rem;
             resize: none;
             margin-bottom: 2rem;
+        }
+    }
+
+    &__file-input {
+        width: 0.0063rem;
+        height: 0.0063rem;
+        opacity: 0;
+        position: absolute;
+    }
+
+    &__file-input-label {
+        width: 10rem;
+        padding: 0.5rem 0;
+        border-radius: 0.5rem;
+        background-color: $light-blue;
+        color: black;
+        border: none;
+        text-align: center;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $dark-blue;
+            color: white;
         }
     }
 

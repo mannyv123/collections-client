@@ -122,7 +122,17 @@ function AddCollection(): JSX.Element {
                                 value={description}
                             ></textarea>
                             <h3 className="add__sub-title">Add Images</h3>
-                            <input type="file" accept="image/*" multiple onChange={handleImageChange} />
+                            <label className="add__file-input-label" htmlFor="selectImages">
+                                Choose Images
+                            </label>
+                            <input
+                                id="selectImages"
+                                type="file"
+                                accept="image/*"
+                                multiple
+                                onChange={handleImageChange}
+                                className="add__file-input"
+                            />
                             <div className="add__images-container">
                                 {selectedImages.map((fileData, index) => (
                                     <ImageCard
