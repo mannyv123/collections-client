@@ -21,17 +21,11 @@
         width: 100%;
         height: 15rem;
         object-fit: cover;
+        cursor: pointer;
     }
 
     &__other-imgs-container {
         background-color: lightblue;
-        // width: 100%;
-        // display: flex;
-        // flex-direction: column;
-        // overflow: hidden;
-        // align-items: center;
-        // height: 100%;
-        // flex-wrap: wrap;
         overflow-y: auto;
 
         display: grid;
@@ -40,24 +34,9 @@
     }
 
     &__other-imgs {
-        // width: 15rem;
-        // height: 10rem;
         object-fit: cover;
-        // flex: 1 0 20%;
-        // min-width: 6.25rem;
-        // min-height: 6.25rem;
-
         width: 100%;
         height: 100%;
-
-        // &--portrait {
-        //     max-width: 3rem;
-        //     // max-height: 6.25rem;
-        // }
-
-        // &--landscape {
-        //     max-height: 3rem;
-        //     // max-width: 6.25rem;
-        // }
+        cursor: pointer;
     }
 }
