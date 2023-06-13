@@ -9,7 +9,7 @@ function PageHeader(): JSX.Element {
     const loginDialogRef = useRef<HTMLDialogElement>(null);
     const signUpDialogRef = useRef<HTMLDialogElement>(null);
     const navigate = useNavigate();
-    const { isLoggedIn, handleLogout, username } = useAuth();
+    const { isLoggedIn, handleLogout, user } = useAuth();
 
     const handleUserLogout = () => {
         handleLogout();
@@ -31,7 +31,7 @@ function PageHeader(): JSX.Element {
                         </li>
                         {isLoggedIn && (
                             <li className="nav__item">
-                                <NavLink className="nav__link" to={`/${username}/map`}>
+                                <NavLink className="nav__link" to={`/${user}/map`}>
                                     Profile
                                 </NavLink>
                             </li>

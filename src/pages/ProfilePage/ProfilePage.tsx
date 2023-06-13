@@ -13,7 +13,7 @@ function ProfilePage(): JSX.Element {
     const [userProfile, setUserProfile] = useState<UserProfile>();
     const [userCollections, setUserCollections] = useState<Collections[]>([]);
 
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, handleLoggedInUserCheck, user } = useAuth();
     const { username } = useParams();
 
     useEffect(() => {
@@ -71,7 +71,7 @@ function ProfilePage(): JSX.Element {
                             </Link>
                         </li>
                     </ul>
-                    {isLoggedIn && (
+                    {isLoggedIn && handleLoggedInUserCheck(user, username) && (
                         <Link
                             to={`/${username}/add`}
                             className="profile__add-collection profile__add-collection--link"

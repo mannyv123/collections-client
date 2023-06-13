@@ -3,9 +3,10 @@ import { ReactNode, createContext, useContext, useState, useEffect } from "react
 //Define type for context value
 interface AuthContextType {
     isLoggedIn: boolean;
-    username: string | null;
+    user: string | null;
     handleLogin: (username: string) => void;
     handleLogout: () => void;
+    handleLoggedInUserCheck: (loggedInUser: string | null, userToCheck: string | undefined) => boolean;
 }
 
 //Create AuthContext and provide type definition
@@ -29,7 +30,7 @@ interface AuthProviderProps {
 //AuthProvider component that manages the login status and provides the context value
 export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
     const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
-    const [username, setUsername] = useState<string | null>(null);
+    const [user, setUsername] = useState<string | null>(null);
 
     useEffect(() => {
         const storedUsername = localStorage.getItem("username");
@@ -51,8 +52,17 @@ export const AuthProvider = ({ children }: AuthProviderProps): JSX.Element => {
         localStorage.removeItem("username");
     };
 
+    const handleLoggedInUserCheck = (
+        loggedInUser: string | null,
+        userToCheck: string | undefined
+    ): boolean => {
+        return loggedInUser === userToCheck;
+    };
+
     return (
-        <AuthContext.Provider value={{ isLoggedIn, handleLogin, handleLogout, username }}>
+        <AuthContext.Provider
+            value={{ isLoggedIn, handleLogin, handleLogout, user, handleLoggedInUserCheck }}
+        >
             {children}
         </AuthContext.Provider>
     );

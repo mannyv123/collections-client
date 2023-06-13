@@ -23,7 +23,7 @@ interface Collection {
 function AddCollection(): JSX.Element {
     const [userId, setUserId] = useState<string>("");
     const { username } = useParams();
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, handleLoggedInUserCheck, user } = useAuth();
     const [selectedImages, setSelectedImages] = useState<ImageData[]>([]); //Tracks images to be uploaded / included in collection
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
@@ -91,7 +91,7 @@ function AddCollection(): JSX.Element {
 
     return (
         <>
-            {isLoggedIn ? (
+            {isLoggedIn && handleLoggedInUserCheck(user, username) ? (
                 <section className="add">
                     <h1 className="add__title">Add a Collection</h1>
                     <div className="add__container">
