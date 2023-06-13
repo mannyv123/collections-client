@@ -3,17 +3,13 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import PageHeader from "./components/PageHeader/PageHeader";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import ProfilePage from "./pages/ProfilePage/ProfilePage";
-// import ViewCollections from "./components/ViewCollections/ViewCollections";
-// import ImageGallery from "./components/ImageGallery/ImageGallery";
-// import AboutUser from "./components/AboutUser/AboutUser";
 import AddCollection from "./pages/AddCollection/AddCollection";
-import { useState } from "react";
 import { AuthProvider } from "./utils/authContext";
 
-export const apiUrl = process.env.REACT_APP_API_URL;
+export const API_URL = process.env.REACT_APP_API_URL;
 
-if (!apiUrl) {
-    throw new Error("No apiUrl set in environment variable. Please update.");
+if (!API_URL) {
+    throw new Error("No API_URL set in environment variable. Please update.");
 }
 
 function App(): JSX.Element {

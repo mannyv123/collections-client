@@ -1,3 +1,5 @@
+@use "./styles/partials/variables" as *;
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -22,3 +24,7 @@ button {
     background-color: #fff;
     font-size: 1rem;
 }
+
+// .active {
+//     background-color: $light-blue;
+// }

@@ -1,13 +1,11 @@
 // import { useState } from "react";
-import { Link, Outlet, Routes, Route, useParams } from "react-router-dom";
+import { Link, Routes, Route, useParams } from "react-router-dom";
 import "./ProfilePage.scss";
 import ViewCollections from "../../components/ViewCollections/ViewCollections";
 import ImageGallery from "../../components/ImageGallery/ImageGallery";
 import AboutUser from "../../components/AboutUser/AboutUser";
 import { useEffect, useState } from "react";
-import axios, { AxiosResponse } from "axios";
 import { Collections, UserProfile } from "../../types/types";
-import { apiUrl } from "../../App";
 import { getUserPosts, getUserProfile } from "../../utils/api";
 import { useAuth } from "../../utils/authContext";
 
@@ -16,22 +14,6 @@ function ProfilePage(): JSX.Element {
     const [userCollections, setUserCollections] = useState<Collections[]>([]);
 
     const { isLoggedIn } = useAuth();
-    //need to update
-    // const [collections, setCollections] = useState<Collections[]>([]);
-
-    // useEffect(() => {
-    //     getCollections();
-    // }, []);
-
-    // async function getCollections() {
-    //     try {
-    //         const response: AxiosResponse<Collections[]> = await axios.get(`${apiUrl}/collections`);
-    //         setCollections(response.data);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-    //need to update end
     const { username } = useParams();
 
     useEffect(() => {
@@ -49,9 +31,6 @@ function ProfilePage(): JSX.Element {
             });
         }
     }, [userProfile]);
-
-    console.log(userProfile);
-    console.log(userCollections);
 
     return (
         <section className="profile">

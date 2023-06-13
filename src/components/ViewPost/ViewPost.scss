@@ -1,16 +1,12 @@
+@use "../../styles/partials/variables" as *;
+
 .view-post {
     position: absolute;
-    // bottom: 0;
-    // left: 0;
     height: 100%;
     width: 30%;
-    // height: 93.5vh;
-
     z-index: 2;
-
-    background-color: grey;
-
     padding: 1rem;
+    background-color: rgba($color: $light-blue, $alpha: 20%);
 
     &__imgs-container {
         width: 100%;
