@@ -25,6 +25,7 @@ function LoginModal({ loginDialogRef }: LoginModalProps): JSX.Element {
 
     const handleLoginFormSubmit = (event: FormEvent) => {
         event.preventDefault();
+
         handleLogin(loginInputs.username);
         navigate(`/${loginInputs.username}/map`);
         loginDialogRef.current?.close();
