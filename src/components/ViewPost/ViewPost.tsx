@@ -39,8 +39,6 @@ function ViewPost({ selected, selectedImgIndex }: ViewPostProps): JSX.Element {
         fullImageRef.current?.showModal();
     };
 
-    console.log(view);
-
     return (
         <>
             <section className={`view-post ${view && "view-post__component--slide-in"}`}>

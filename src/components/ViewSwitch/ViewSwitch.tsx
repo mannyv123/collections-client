@@ -1,4 +1,5 @@
 import "./ViewSwitch.scss";
+import { MdOutlineRoom, MdViewModule } from "react-icons/md";
 
 interface ViewSwitchProps {
     map: boolean;
@@ -8,9 +9,10 @@ interface ViewSwitchProps {
 function ViewSwitch({ map, setMap }: ViewSwitchProps): JSX.Element {
     return (
         <label htmlFor="view" className="switch">
-            Map or List View
-            <div className={`switch__container ${map ? "" : "switch__container--list"}`}>
-                <div className="switch__item"></div>
+            <div className="switch__container">
+                <MdOutlineRoom className="switch__icon" />
+                <MdViewModule className="switch__icon" />
+                <div className={`switch__item ${map ? "switch__item--map" : "switch__item--list"}`}></div>
             </div>
             <input
                 type="checkbox"

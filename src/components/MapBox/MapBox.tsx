@@ -111,7 +111,6 @@ function MapBox({ collections }: MapBoxProps): JSX.Element {
                             />
                         ))
                     )}
-                    {/* <Marker longitude={-122.4} latitude={37.8} color="red" /> */}
                 </Map>
             </div>
         </section>

@@ -1,3 +1,5 @@
+@use "../../styles/partials/variables" as *;
+
 .switch {
     position: absolute;
     z-index: 1;
@@ -7,29 +9,39 @@
     cursor: pointer;
 
     &__container {
-        // background-color: grey;
-        width: 4rem;
-        // height: 2rem;
+        width: 4.5rem;
+        height: fit-content;
         border: 1px solid black;
         border-radius: 1.5rem;
-        padding: 0.25rem;
+        padding: 0.5rem;
 
         display: flex;
-        justify-content: flex-start;
-
-        &--list {
-            justify-content: flex-end;
-        }
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
     }
 
     &__item {
-        background-color: red;
+        position: absolute;
+        background-color: $red;
         width: 1.5rem;
         height: 1.5rem;
         border-radius: 50%;
+
+        &--map {
+            left: 0.25rem;
+        }
+
+        &--list {
+            right: 0.25rem;
+        }
     }
 
     &__input {
         display: none;
+    }
+
+    &__icon {
+        transform: scale(1.5);
     }
 }
