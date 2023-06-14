@@ -7,6 +7,15 @@
     z-index: 2;
     padding: 1rem;
     background-color: rgba($color: $light-blue, $alpha: 20%);
+    overflow: hidden;
+    transform: translateX(-100%);
+
+    &__component {
+        &--slide-in {
+            transform: translateX(0); /* Initial position */
+            transition: transform 0.5s ease-in-out; /* Animation transition */
+        }
+    }
 
     &__username {
         margin: 0.5rem 0;
@@ -43,7 +52,7 @@
     }
 
     &__other-imgs-container {
-        background-color: lightblue;
+        background-color: $dark-blue;
         overflow-y: auto;
 
         display: grid;

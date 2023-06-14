@@ -15,6 +15,7 @@ interface ViewPostProps {
 function ViewPost({ selected, selectedImgIndex }: ViewPostProps): JSX.Element {
     const [showImageIndex, setShowImageIndex] = useState<number>(0);
     const [username, setUsername] = useState<string>("");
+    const [view, setView] = useState(false);
     const fullImageRef = useRef<HTMLDialogElement>(null);
 
     useEffect(() => {
@@ -25,6 +26,10 @@ function ViewPost({ selected, selectedImgIndex }: ViewPostProps): JSX.Element {
         }
     }, [selected]);
 
+    useEffect(() => {
+        setView((prevView) => !prevView);
+    }, [setView]);
+
     const otherImgs = selected.collection_images.filter(
         (image) => image.id !== selected.collection_images[selectedImgIndex].id
     );
@@ -34,9 +39,11 @@ function ViewPost({ selected, selectedImgIndex }: ViewPostProps): JSX.Element {
         fullImageRef.current?.showModal();
     };
 
+    console.log(view);
+
     return (
         <>
-            <section className="view-post">
+            <section className={`view-post ${view && "view-post__component--slide-in"}`}>
                 <h3 className="view-post__title">{selected.title}</h3>
                 <Link to={`/${username}/map`} className="view-post__username-link">
                     <p className="view-post__username">{username}</p>

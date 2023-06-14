@@ -17,7 +17,7 @@ interface View {
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
 function MapBox({ collections }: MapBoxProps): JSX.Element {
-    const [viewPost, setViewPost] = useState<Boolean>(false);
+    const [viewPost, setViewPost] = useState<boolean>(false);
     const [viewState, setViewState] = useState<View>({
         latitude: 49.285283,
         longitude: -123.115044,
