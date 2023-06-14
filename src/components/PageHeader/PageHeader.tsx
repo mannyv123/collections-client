@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useRef } from "react";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 import "./PageHeader.scss";
 import LoginModal from "../LoginModal/LoginModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
@@ -9,7 +9,7 @@ function PageHeader(): JSX.Element {
     const loginDialogRef = useRef<HTMLDialogElement>(null);
     const signUpDialogRef = useRef<HTMLDialogElement>(null);
     const navigate = useNavigate();
-    const { isLoggedIn, handleLogin, handleLogout, username } = useAuth();
+    const { isLoggedIn, handleLogout, user } = useAuth();
 
     const handleUserLogout = () => {
         handleLogout();
@@ -25,15 +25,15 @@ function PageHeader(): JSX.Element {
                 <nav className="nav">
                     <ul className="nav__list">
                         <li className="nav__item">
-                            <Link className="nav__link" to="/">
+                            <NavLink className="nav__link" to="/">
                                 Home
-                            </Link>
+                            </NavLink>
                         </li>
                         {isLoggedIn && (
                             <li className="nav__item">
-                                <Link className="nav__link" to={`/${username}/map`}>
+                                <NavLink className="nav__link" to={`/${user}/map`}>
                                     Profile
-                                </Link>
+                                </NavLink>
                             </li>
                         )}
                         {!isLoggedIn && (

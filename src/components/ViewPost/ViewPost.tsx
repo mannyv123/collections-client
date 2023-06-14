@@ -1,8 +1,11 @@
 import "./ViewPost.scss";
 import { Collections } from "../../types/types";
-import { useEffect, useState, useRef, MouseEventHandler } from "react";
+import { useState, useRef, useEffect } from "react";
 import FullscreenModal from "../FullscreenModal/FullscreenModal";
 import { CollectionImages } from "../../types/types";
+import { getUsername } from "../../utils/api";
+import { AxiosResponse } from "axios";
+import { Link } from "react-router-dom";
 
 interface ViewPostProps {
     selected: Collections;
@@ -10,11 +13,23 @@ interface ViewPostProps {
 }
 
 function ViewPost({ selected, selectedImgIndex }: ViewPostProps): JSX.Element {
-    // const [currentImgIndex, setCurrentImgIndex] = useState<number>(selectedImgIndex);
     const [showImageIndex, setShowImageIndex] = useState<number>(0);
+    const [username, setUsername] = useState<string>("");
+    const [view, setView] = useState(false);
     const fullImageRef = useRef<HTMLDialogElement>(null);
 
-    console.log(selected);
+    useEffect(() => {
+        if (selected) {
+            getUsername(selected.user_id, (response: AxiosResponse) => {
+                setUsername(response.data[0].username);
+            });
+        }
+    }, [selected]);
+
+    useEffect(() => {
+        setView((prevView) => !prevView);
+    }, [setView]);
+
     const otherImgs = selected.collection_images.filter(
         (image) => image.id !== selected.collection_images[selectedImgIndex].id
     );
@@ -24,13 +39,13 @@ function ViewPost({ selected, selectedImgIndex }: ViewPostProps): JSX.Element {
         fullImageRef.current?.showModal();
     };
 
-    console.log(showImageIndex);
-
     return (
         <>
-            <section className="view-post">
+            <section className={`view-post ${view && "view-post__component--slide-in"}`}>
                 <h3 className="view-post__title">{selected.title}</h3>
-                <p>{selected.user_id}</p>
+                <Link to={`/${username}/map`} className="view-post__username-link">
+                    <p className="view-post__username">{username}</p>
+                </Link>
                 <div className="view-post__imgs-container">
                     <img
                         src={selected.collection_images[selectedImgIndex].imageUrl}
@@ -39,7 +54,7 @@ function ViewPost({ selected, selectedImgIndex }: ViewPostProps): JSX.Element {
                         onClick={() => openModal(selected.collection_images[selectedImgIndex])}
                     />
                     <div className="view-post__other-imgs-container">
-                        {otherImgs.map((image, index) => (
+                        {otherImgs.map((image) => (
                             <img
                                 key={image.id}
                                 src={image.imageUrl}

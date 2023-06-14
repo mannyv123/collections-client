@@ -1,6 +1,7 @@
+@use "../../styles/partials/variables" as *;
+
 .img-card {
     flex: 0 0 32.3%;
-    // border: 1px solid black;
 
     padding: 0.5rem;
     border-radius: 0.5rem;
@@ -9,6 +10,11 @@
         background-color: lightgray; //temporary
         width: 100%;
         aspect-ratio: 16/9;
+
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+
+        overflow: hidden;
     }
 
     &__image-file {
@@ -22,8 +28,10 @@
     &__input {
         font-size: 1rem;
         border-radius: 0.5rem;
-        border: 1px solid black;
         padding: 0.5rem;
         width: 100%;
+        border: none;
+        background-color: $input-bg;
+        font-family: $primary-font;
     }
 }

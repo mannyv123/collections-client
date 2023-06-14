@@ -23,7 +23,7 @@ interface Collection {
 function AddCollection(): JSX.Element {
     const [userId, setUserId] = useState<string>("");
     const { username } = useParams();
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, handleLoggedInUserCheck, user } = useAuth();
     const [selectedImages, setSelectedImages] = useState<ImageData[]>([]); //Tracks images to be uploaded / included in collection
     const [title, setTitle] = useState<string>("");
     const [description, setDescription] = useState<string>("");
@@ -91,7 +91,7 @@ function AddCollection(): JSX.Element {
 
     return (
         <>
-            {isLoggedIn ? (
+            {isLoggedIn && handleLoggedInUserCheck(user, username) ? (
                 <section className="add">
                     <h1 className="add__title">Add a Collection</h1>
                     <div className="add__container">
@@ -122,7 +122,17 @@ function AddCollection(): JSX.Element {
                                 value={description}
                             ></textarea>
                             <h3 className="add__sub-title">Add Images</h3>
-                            <input type="file" accept="image/*" multiple onChange={handleImageChange} />
+                            <label className="add__file-input-label" htmlFor="selectImages">
+                                Choose Images
+                            </label>
+                            <input
+                                id="selectImages"
+                                type="file"
+                                accept="image/*"
+                                multiple
+                                onChange={handleImageChange}
+                                className="add__file-input"
+                            />
                             <div className="add__images-container">
                                 {selectedImages.map((fileData, index) => (
                                     <ImageCard

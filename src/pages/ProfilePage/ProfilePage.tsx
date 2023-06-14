@@ -1,13 +1,11 @@
 // import { useState } from "react";
-import { Link, Outlet, Routes, Route, useParams } from "react-router-dom";
+import { Link, Routes, Route, useParams } from "react-router-dom";
 import "./ProfilePage.scss";
 import ViewCollections from "../../components/ViewCollections/ViewCollections";
 import ImageGallery from "../../components/ImageGallery/ImageGallery";
 import AboutUser from "../../components/AboutUser/AboutUser";
 import { useEffect, useState } from "react";
-import axios, { AxiosResponse } from "axios";
 import { Collections, UserProfile } from "../../types/types";
-import { apiUrl } from "../../App";
 import { getUserPosts, getUserProfile } from "../../utils/api";
 import { useAuth } from "../../utils/authContext";
 
@@ -15,23 +13,7 @@ function ProfilePage(): JSX.Element {
     const [userProfile, setUserProfile] = useState<UserProfile>();
     const [userCollections, setUserCollections] = useState<Collections[]>([]);
 
-    const { isLoggedIn } = useAuth();
-    //need to update
-    // const [collections, setCollections] = useState<Collections[]>([]);
-
-    // useEffect(() => {
-    //     getCollections();
-    // }, []);
-
-    // async function getCollections() {
-    //     try {
-    //         const response: AxiosResponse<Collections[]> = await axios.get(`${apiUrl}/collections`);
-    //         setCollections(response.data);
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // }
-    //need to update end
+    const { isLoggedIn, handleLoggedInUserCheck, user } = useAuth();
     const { username } = useParams();
 
     useEffect(() => {
@@ -49,9 +31,6 @@ function ProfilePage(): JSX.Element {
             });
         }
     }, [userProfile]);
-
-    console.log(userProfile);
-    console.log(userCollections);
 
     return (
         <section className="profile">
@@ -92,7 +71,7 @@ function ProfilePage(): JSX.Element {
                             </Link>
                         </li>
                     </ul>
-                    {isLoggedIn && (
+                    {isLoggedIn && handleLoggedInUserCheck(user, username) && (
                         <Link
                             to={`/${username}/add`}
                             className="profile__add-collection profile__add-collection--link"

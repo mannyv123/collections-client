@@ -1,7 +1,8 @@
-import { Dispatch, FormEvent, RefObject, SetStateAction, useState } from "react";
+import { FormEvent, RefObject, useState } from "react";
 import "./LoginModal.scss";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/authContext";
+import { MdClose } from "react-icons/md";
 
 interface LoginModalProps {
     loginDialogRef: RefObject<HTMLDialogElement>;
@@ -15,7 +16,7 @@ const initialValues = {
 function LoginModal({ loginDialogRef }: LoginModalProps): JSX.Element {
     const navigate = useNavigate();
     const [loginInputs, setLoginInputs] = useState(initialValues);
-    const { isLoggedIn, handleLogin, handleLogout, username } = useAuth();
+    const { handleLogin } = useAuth();
 
     const handleInputChange = (event: FormEvent<HTMLInputElement>) => {
         const { name, value } = event.currentTarget;
@@ -25,23 +26,24 @@ function LoginModal({ loginDialogRef }: LoginModalProps): JSX.Element {
     const handleLoginFormSubmit = (event: FormEvent) => {
         event.preventDefault();
 
-        // localStorage.setItem("username", loginInputs.username);
         handleLogin(loginInputs.username);
         navigate(`/${loginInputs.username}/map`);
         loginDialogRef.current?.close();
+
+        setLoginInputs(initialValues);
     };
 
     return (
         <dialog ref={loginDialogRef} className="login">
             <div className="login__container">
-                <p
+                <div
                     onClick={() => {
                         loginDialogRef.current?.close();
                     }}
                     className="login__close"
                 >
-                    X
-                </p>
+                    <MdClose className="login__close-icon" />
+                </div>
                 <h1 className="login__title">Login</h1>
                 <form action="submit" className="login__form" onSubmit={handleLoginFormSubmit}>
                     <input
