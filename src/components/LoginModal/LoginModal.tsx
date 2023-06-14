@@ -29,6 +29,8 @@ function LoginModal({ loginDialogRef }: LoginModalProps): JSX.Element {
         handleLogin(loginInputs.username);
         navigate(`/${loginInputs.username}/map`);
         loginDialogRef.current?.close();
+
+        setLoginInputs(initialValues);
     };
 
     return (

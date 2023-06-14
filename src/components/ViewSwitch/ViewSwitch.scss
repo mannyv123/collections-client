@@ -29,13 +29,11 @@
         border-radius: 50%;
 
         &--map {
-            // left: 0.25rem;
             transform: translateX(-18%);
             transition: transform 0.5s ease-in-out; /* Animation transition */
         }
 
         &--list {
-            // right: 0.25rem;
             transform: translateX(100%);
             transition: transform 0.5s ease-in-out; /* Animation transition */
         }
