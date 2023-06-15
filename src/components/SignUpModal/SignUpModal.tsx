@@ -39,7 +39,6 @@ const initialValuesProfile = {
 
 function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX.Element {
     const [signUpStep, setSignUpStep] = useState<string>("account");
-    const [inputValues, setInputValues] = useState<FormTextInputs>(initialValues); //tracks form text inputs
 
     const [inputValuesAccount, setInputValuesAccount] = useState(initialValuesAccount); //tracks form text inputs for Account
     const [inputValuesProfile, setInputValuesProfile] = useState(initialValuesProfile); //tracks form text inputs for Profile
@@ -48,12 +47,6 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
     const [coverImgUrl, setCoverImgUrl] = useState<string>(); //tracks temporary url for cover img preview
     const [profileImg, setProfileImg] = useState<File>(); //tracks file data for profile img
     const [profileImgUrl, setProfileImgUrl] = useState<string>(); //tracks temporary url for profile img preview
-
-    //Handles form input values
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.currentTarget;
-        setInputValues({ ...inputValues, [name]: value });
-    };
 
     //Handles form input values for Account
     const handleInputChangeAccount = (event: ChangeEvent<HTMLInputElement>) => {
@@ -102,7 +95,8 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
             loginDialogRef.current?.showModal();
 
             //Reset form values
-            setInputValues(initialValues);
+            setInputValuesAccount(initialValuesAccount);
+            setInputValuesProfile(initialValuesProfile);
             setCoverImg(undefined);
             setCoverImgUrl(undefined);
             setProfileImg(undefined);
@@ -134,8 +128,6 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
                     {signUpStep === "account" && (
                         <CreateAccount
                             setSignUpStep={setSignUpStep}
-                            handleInputChange={handleInputChange}
-                            inputValues={inputValues}
                             handleInputChangeAccount={handleInputChangeAccount}
                             inputValuesAccount={inputValuesAccount}
                         />
@@ -143,8 +135,6 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
                     {signUpStep === "profile" && (
                         <CreateProfile
                             setSignUpStep={setSignUpStep}
-                            handleInputChange={handleInputChange}
-                            inputValues={inputValues}
                             handleInputChangeProfile={handleInputChangeProfile}
                             inputValuesProfile={inputValuesProfile}
                         />

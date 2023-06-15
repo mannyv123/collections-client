@@ -4,16 +4,12 @@ import { FormTextInputs, FormTextInputsAccount } from "../../types/types";
 
 interface CreateAccountProps {
     setSignUpStep(step: string): void;
-    handleInputChange(event: ChangeEvent): void;
-    inputValues: FormTextInputs;
     handleInputChangeAccount(event: ChangeEvent): void;
     inputValuesAccount: FormTextInputsAccount;
 }
 
 function CreateAccount({
     setSignUpStep,
-    handleInputChange,
-    inputValues,
     handleInputChangeAccount,
     inputValuesAccount,
 }: CreateAccountProps): JSX.Element {
@@ -46,9 +42,7 @@ function CreateAccount({
                     id="setUsername"
                     placeholder="Username"
                     className="create-account__input"
-                    // onChange={handleInputChange}
                     onChange={handleInputChangeAccount}
-                    // value={inputValues.username}
                     value={inputValuesAccount.username}
                 />
                 <label htmlFor="setPassword">Create a password:</label>
@@ -58,9 +52,7 @@ function CreateAccount({
                     id="setPassword"
                     placeholder="Password"
                     className="create-account__input"
-                    // onChange={handleInputChange}
                     onChange={handleInputChangeAccount}
-                    // value={inputValues.password}
                     value={inputValuesAccount.password}
                 />
                 <label htmlFor="confirmPassword">Confirm your password:</label>
@@ -70,9 +62,7 @@ function CreateAccount({
                     id="confirmPassword"
                     placeholder="Confirm password"
                     className="create-account__input"
-                    // onChange={handleInputChange}
                     onChange={handleInputChangeAccount}
-                    // value={inputValues.confirmPassword}
                     value={inputValuesAccount.confirmPassword}
                 />
                 <label htmlFor="email">Enter your email:</label>
@@ -82,9 +72,7 @@ function CreateAccount({
                     id="email"
                     placeholder="Email"
                     className="create-account__input"
-                    // onChange={handleInputChange}
                     onChange={handleInputChangeAccount}
-                    // value={inputValues.email}
                     value={inputValuesAccount.email}
                 />
             </div>

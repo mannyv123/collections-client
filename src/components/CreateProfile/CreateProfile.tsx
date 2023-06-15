@@ -4,16 +4,12 @@ import { FormEvent, useState, useEffect, ChangeEvent } from "react";
 
 interface CreateProfileProps {
     setSignUpStep(step: string): void;
-    handleInputChange(event: ChangeEvent): void;
-    inputValues: FormTextInputs;
     handleInputChangeProfile(event: ChangeEvent): void;
     inputValuesProfile: FormTextInputsProfile;
 }
 
 function CreateProfile({
     setSignUpStep,
-    handleInputChange,
-    inputValues,
     handleInputChangeProfile,
     inputValuesProfile,
 }: CreateProfileProps): JSX.Element {
