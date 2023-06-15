@@ -27,6 +27,15 @@ button {
     font-family: $primary-font;
 }
 
+input {
+    border: none;
+}
+
 // .active {
 //     background-color: $light-blue;
 // }
+
+//Error states for inputs
+.input-error {
+    outline: 2px solid $red;
+}

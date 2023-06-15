@@ -1,8 +1,14 @@
-import { FormEvent, RefObject, useState } from "react";
+import { FormEvent, RefObject, useEffect, useState } from "react";
 import "./LoginModal.scss";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/authContext";
 import { MdClose } from "react-icons/md";
+import { getAllUsernames } from "../../utils/api";
+import { AxiosResponse } from "axios";
+
+interface Username {
+    username: string;
+}
 
 interface LoginModalProps {
     loginDialogRef: RefObject<HTMLDialogElement>;
@@ -13,9 +19,17 @@ const initialValues = {
     password: "",
 };
 
+const isErrorInitial = {
+    username: false,
+    password: false,
+};
+
 function LoginModal({ loginDialogRef }: LoginModalProps): JSX.Element {
     const navigate = useNavigate();
     const [loginInputs, setLoginInputs] = useState(initialValues);
+    const [usernamesList, setUsernamesList] = useState<Username[]>([]);
+    const [isError, setIsError] = useState(isErrorInitial);
+    const [errorMsg, setErrorMsg] = useState("");
     const { handleLogin } = useAuth();
 
     const handleInputChange = (event: FormEvent<HTMLInputElement>) => {
@@ -23,15 +37,50 @@ function LoginModal({ loginDialogRef }: LoginModalProps): JSX.Element {
         setLoginInputs({ ...loginInputs, [name]: value });
     };
 
+    useEffect(() => {
+        getAllUsernames((response: AxiosResponse) => {
+            setUsernamesList(response.data);
+        });
+    }, []);
+
+    const isFormValid = () => {
+        setIsError(isErrorInitial);
+
+        //Check if any inputs are blank
+        let result = false;
+        for (const [key, value] of Object.entries(loginInputs)) {
+            if (value === "") {
+                setErrorMsg("Please do not leave field blank");
+                setIsError((prevIsError) => ({ ...prevIsError, [key]: true }));
+                result = true;
+            }
+        }
+        if (result) return false;
+
+        //Check if the username actually exists
+        if (usernamesList.find((username) => username.username === loginInputs.username)) return true;
+
+        //If username does not exist, set error msg and error state
+        setErrorMsg("Username or password is incorrect");
+        setIsError((prevIsError) => ({ ...prevIsError, username: true }));
+        return false;
+    };
+
     const handleLoginFormSubmit = (event: FormEvent) => {
         event.preventDefault();
 
+        if (!isFormValid()) {
+            return console.log("ERROR");
+        }
+
+        setLoginInputs(initialValues);
+        setIsError(isErrorInitial);
         handleLogin(loginInputs.username);
         navigate(`/${loginInputs.username}/map`);
         loginDialogRef.current?.close();
-
-        setLoginInputs(initialValues);
     };
+
+    console.log(isError);
 
     return (
         <dialog ref={loginDialogRef} className="login">
@@ -50,16 +99,17 @@ function LoginModal({ loginDialogRef }: LoginModalProps): JSX.Element {
                         type="text"
                         name="username"
                         id="username"
-                        className="login__input"
+                        className={`login__input ${isError.username ? "input-error" : ""}`}
                         placeholder="Username"
                         onChange={handleInputChange}
                         value={loginInputs.username}
                     />
+
                     <input
                         type="password"
                         name="password"
                         id="password"
-                        className="login__input"
+                        className={`login__input ${isError.password ? "input-error" : ""}`}
                         placeholder="Password"
                         onChange={handleInputChange}
                         value={loginInputs.password}

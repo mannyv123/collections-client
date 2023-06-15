@@ -65,3 +65,13 @@ export async function getUsername(userId: string, callback: Function) {
         console.error(error);
     }
 }
+
+//Get All Usernames
+export async function getAllUsernames(callback: Function) {
+    try {
+        const response = await axios.get(`${API_URL}/users/`);
+        callback(response);
+    } catch (error) {
+        console.error(error);
+    }
+}
