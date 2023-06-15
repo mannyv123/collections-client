@@ -1,12 +1,12 @@
 import "./CreateProfile.scss";
 import { FormTextInputs, FormTextInputsProfile } from "../../types/types";
-import { FormEvent, useState, useEffect } from "react";
+import { FormEvent, useState, useEffect, ChangeEvent } from "react";
 
 interface CreateProfileProps {
     setSignUpStep(step: string): void;
-    handleInputChange(event: FormEvent): void;
+    handleInputChange(event: ChangeEvent): void;
     inputValues: FormTextInputs;
-    handleInputChangeProfile(event: FormEvent): void;
+    handleInputChangeProfile(event: ChangeEvent): void;
     inputValuesProfile: FormTextInputsProfile;
 }
 

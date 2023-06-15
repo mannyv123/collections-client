@@ -50,19 +50,19 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
     const [profileImgUrl, setProfileImgUrl] = useState<string>(); //tracks temporary url for profile img preview
 
     //Handles form input values
-    const handleInputChange = (event: FormEvent<HTMLInputElement>) => {
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.currentTarget;
         setInputValues({ ...inputValues, [name]: value });
     };
 
     //Handles form input values for Account
-    const handleInputChangeAccount = (event: FormEvent<HTMLInputElement>) => {
+    const handleInputChangeAccount = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.currentTarget;
         setInputValuesAccount({ ...inputValuesAccount, [name]: value });
     };
 
     //Handles form input values for Profile
-    const handleInputChangeProfile = (event: FormEvent<HTMLInputElement>) => {
+    const handleInputChangeProfile = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.currentTarget;
         setInputValuesProfile({ ...inputValuesProfile, [name]: value });
     };
@@ -85,9 +85,6 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
         }
     };
 
-    console.log("account", inputValuesAccount);
-    console.log("profile", inputValuesProfile);
-
     const handleSignUpFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -97,25 +94,23 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
             ...inputValuesProfile,
         };
 
-        console.log(newUser);
-
         //Function posts new user with API call
-        // try {
-        //     const response = await createUser(newUser, coverImg, profileImg);
-        //     console.log(response);
-        //     signUpDialogRef.current?.close();
-        //     loginDialogRef.current?.showModal();
+        try {
+            const response = await createUser(newUser, coverImg, profileImg);
+            console.log(response);
+            signUpDialogRef.current?.close();
+            loginDialogRef.current?.showModal();
 
-        //     //Reset form values
-        //     setInputValues(initialValues);
-        //     setCoverImg(undefined);
-        //     setCoverImgUrl(undefined);
-        //     setProfileImg(undefined);
-        //     setProfileImgUrl(undefined);
-        //     setSignUpStep("account");
-        // } catch (error) {
-        //     console.error(error);
-        // }
+            //Reset form values
+            setInputValues(initialValues);
+            setCoverImg(undefined);
+            setCoverImgUrl(undefined);
+            setProfileImg(undefined);
+            setProfileImgUrl(undefined);
+            setSignUpStep("account");
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (

@@ -1,12 +1,12 @@
-import { FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import "./CreateAccount.scss";
 import { FormTextInputs, FormTextInputsAccount } from "../../types/types";
 
 interface CreateAccountProps {
     setSignUpStep(step: string): void;
-    handleInputChange(event: FormEvent): void;
+    handleInputChange(event: ChangeEvent): void;
     inputValues: FormTextInputs;
-    handleInputChangeAccount(event: FormEvent): void;
+    handleInputChangeAccount(event: ChangeEvent): void;
     inputValuesAccount: FormTextInputsAccount;
 }
 

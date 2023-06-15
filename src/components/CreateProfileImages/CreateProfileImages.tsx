@@ -1,4 +1,5 @@
 import { ChangeEvent } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import "./CreateProfileImages.scss";
 
 interface CreateProfileImagesProps {
@@ -20,8 +21,20 @@ function CreateProfileImages({
     profileImg,
     profileImgUrl,
 }: CreateProfileImagesProps): JSX.Element {
-    console.log(profileImg);
-    console.log(profileImgUrl);
+    const [isBlank, setIsBlank] = useState(true);
+
+    const isNotUploaded = () => {
+        if (!profileImg || !coverImg) {
+            return setIsBlank(true);
+        }
+
+        return setIsBlank(false);
+    };
+
+    useEffect(() => {
+        isNotUploaded();
+    }, [profileImg, coverImg]);
+
     return (
         <div className="profile-imgs">
             <h2 className="profile-imgs__title">Add Profile Images</h2>
@@ -65,7 +78,7 @@ function CreateProfileImages({
                 <button type="button" onClick={() => setSignUpStep("profile")} className="profile-imgs__btn">
                     Back
                 </button>
-                <button type="submit" className="profile-imgs__btn">
+                <button type="submit" className="profile-imgs__btn" disabled={isBlank}>
                     Submit
                 </button>
             </div>
