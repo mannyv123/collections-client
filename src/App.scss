@@ -35,7 +35,18 @@ input {
 //     background-color: $light-blue;
 // }
 
-//Error states for inputs
-.input-error {
-    outline: 2px solid $red;
+.input {
+    &__container {
+        margin-bottom: 1rem;
+    }
+
+    //Error states for inputs
+    &__error {
+        outline: 2px solid $red;
+    }
+
+    &__error-msg {
+        color: $red;
+        font-size: 0.75rem;
+    }
 }
