@@ -23,9 +23,27 @@ const initialValues: FormTextInputs = {
     setup: "",
 };
 
+const initialValuesAccount = {
+    username: "",
+    password: "",
+    confirmPassword: "",
+    email: "",
+};
+
+const initialValuesProfile = {
+    first_name: "",
+    last_name: "",
+    about: "",
+    setup: "",
+};
+
 function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX.Element {
     const [signUpStep, setSignUpStep] = useState<string>("account");
     const [inputValues, setInputValues] = useState<FormTextInputs>(initialValues); //tracks form text inputs
+
+    const [inputValuesAccount, setInputValuesAccount] = useState(initialValuesAccount); //tracks form text inputs for Account
+    const [inputValuesProfile, setInputValuesProfile] = useState(initialValuesProfile); //tracks form text inputs for Profile
+
     const [coverImg, setCoverImg] = useState<File>(); //tracks file data for cover img
     const [coverImgUrl, setCoverImgUrl] = useState<string>(); //tracks temporary url for cover img preview
     const [profileImg, setProfileImg] = useState<File>(); //tracks file data for profile img
@@ -35,6 +53,18 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
     const handleInputChange = (event: FormEvent<HTMLInputElement>) => {
         const { name, value } = event.currentTarget;
         setInputValues({ ...inputValues, [name]: value });
+    };
+
+    //Handles form input values for Account
+    const handleInputChangeAccount = (event: FormEvent<HTMLInputElement>) => {
+        const { name, value } = event.currentTarget;
+        setInputValuesAccount({ ...inputValuesAccount, [name]: value });
+    };
+
+    //Handles form input values for Profile
+    const handleInputChangeProfile = (event: FormEvent<HTMLInputElement>) => {
+        const { name, value } = event.currentTarget;
+        setInputValuesProfile({ ...inputValuesProfile, [name]: value });
     };
 
     //Handles cover img
@@ -55,29 +85,37 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
         }
     };
 
+    console.log("account", inputValuesAccount);
+    console.log("profile", inputValuesProfile);
+
     const handleSignUpFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const { confirmPassword, ...rest } = inputValues;
-        const newUser: NewUser = rest;
+        const { confirmPassword, ...restAccount } = inputValuesAccount;
+        const newUser: NewUser = {
+            ...restAccount,
+            ...inputValuesProfile,
+        };
+
+        console.log(newUser);
 
         //Function posts new user with API call
-        try {
-            const response = await createUser(newUser, coverImg, profileImg);
-            console.log(response);
-            signUpDialogRef.current?.close();
-            loginDialogRef.current?.showModal();
+        // try {
+        //     const response = await createUser(newUser, coverImg, profileImg);
+        //     console.log(response);
+        //     signUpDialogRef.current?.close();
+        //     loginDialogRef.current?.showModal();
 
-            //Reset form values
-            setInputValues(initialValues);
-            setCoverImg(undefined);
-            setCoverImgUrl(undefined);
-            setProfileImg(undefined);
-            setProfileImgUrl(undefined);
-            setSignUpStep("account");
-        } catch (error) {
-            console.error(error);
-        }
+        //     //Reset form values
+        //     setInputValues(initialValues);
+        //     setCoverImg(undefined);
+        //     setCoverImgUrl(undefined);
+        //     setProfileImg(undefined);
+        //     setProfileImgUrl(undefined);
+        //     setSignUpStep("account");
+        // } catch (error) {
+        //     console.error(error);
+        // }
     };
 
     return (
@@ -103,6 +141,8 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
                             setSignUpStep={setSignUpStep}
                             handleInputChange={handleInputChange}
                             inputValues={inputValues}
+                            handleInputChangeAccount={handleInputChangeAccount}
+                            inputValuesAccount={inputValuesAccount}
                         />
                     )}
                     {signUpStep === "profile" && (
@@ -110,6 +150,8 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
                             setSignUpStep={setSignUpStep}
                             handleInputChange={handleInputChange}
                             inputValues={inputValues}
+                            handleInputChangeProfile={handleInputChangeProfile}
+                            inputValuesProfile={inputValuesProfile}
                         />
                     )}
                     {signUpStep === "profileImage" && (
