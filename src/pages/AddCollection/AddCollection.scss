@@ -31,6 +31,12 @@
             background-color: $dark-blue;
             color: white;
         }
+
+        &:disabled {
+            background-color: $white;
+            color: grey;
+            outline: 1px solid grey;
+        }
     }
 
     &__input {
@@ -45,7 +51,6 @@
         &--textarea {
             height: 10rem;
             resize: none;
-            margin-bottom: 2rem;
         }
     }
 

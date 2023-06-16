@@ -80,8 +80,6 @@ function LoginModal({ loginDialogRef }: LoginModalProps): JSX.Element {
         loginDialogRef.current?.close();
     };
 
-    console.log(isError);
-
     return (
         <dialog ref={loginDialogRef} className="login">
             <div className="login__container">

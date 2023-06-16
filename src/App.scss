@@ -37,6 +37,8 @@ input {
 
 .input {
     &__container {
+        display: flex;
+        flex-direction: column;
         margin-bottom: 1rem;
     }
 
@@ -49,5 +51,9 @@ input {
         color: $red;
         font-size: 0.75rem;
         text-align: center;
+
+        &--add {
+            text-align: left;
+        }
     }
 }
