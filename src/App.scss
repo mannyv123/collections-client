@@ -27,6 +27,33 @@ button {
     font-family: $primary-font;
 }
 
+input {
+    border: none;
+}
+
 // .active {
 //     background-color: $light-blue;
 // }
+
+.input {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+
+    //Error states for inputs
+    &__error {
+        outline: 2px solid $red;
+    }
+
+    &__error-msg {
+        color: $red;
+        font-size: 0.75rem;
+        text-align: center;
+
+        &--add {
+            text-align: left;
+        }
+    }
+}

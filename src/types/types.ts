@@ -31,6 +31,22 @@ export interface FormTextInputs {
     setup: string;
 }
 
+//Sign Up Form - Account
+export interface FormTextInputsAccount {
+    username: string;
+    password: string;
+    confirmPassword: string;
+    email: string;
+}
+
+//Sign Up Form - Profile
+export interface FormTextInputsProfile {
+    first_name: string;
+    last_name: string;
+    about: string;
+    setup: string;
+}
+
 //New User
 export interface NewUser {
     username: string;

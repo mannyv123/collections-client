@@ -23,18 +23,41 @@ const initialValues: FormTextInputs = {
     setup: "",
 };
 
+const initialValuesAccount = {
+    username: "",
+    password: "",
+    confirmPassword: "",
+    email: "",
+};
+
+const initialValuesProfile = {
+    first_name: "",
+    last_name: "",
+    about: "",
+    setup: "",
+};
+
 function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX.Element {
     const [signUpStep, setSignUpStep] = useState<string>("account");
-    const [inputValues, setInputValues] = useState<FormTextInputs>(initialValues); //tracks form text inputs
+
+    const [inputValuesAccount, setInputValuesAccount] = useState(initialValuesAccount); //tracks form text inputs for Account
+    const [inputValuesProfile, setInputValuesProfile] = useState(initialValuesProfile); //tracks form text inputs for Profile
+
     const [coverImg, setCoverImg] = useState<File>(); //tracks file data for cover img
     const [coverImgUrl, setCoverImgUrl] = useState<string>(); //tracks temporary url for cover img preview
     const [profileImg, setProfileImg] = useState<File>(); //tracks file data for profile img
     const [profileImgUrl, setProfileImgUrl] = useState<string>(); //tracks temporary url for profile img preview
 
-    //Handles form input values
-    const handleInputChange = (event: FormEvent<HTMLInputElement>) => {
+    //Handles form input values for Account
+    const handleInputChangeAccount = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.currentTarget;
-        setInputValues({ ...inputValues, [name]: value });
+        setInputValuesAccount({ ...inputValuesAccount, [name]: value });
+    };
+
+    //Handles form input values for Profile
+    const handleInputChangeProfile = (event: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.currentTarget;
+        setInputValuesProfile({ ...inputValuesProfile, [name]: value });
     };
 
     //Handles cover img
@@ -58,8 +81,11 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
     const handleSignUpFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const { confirmPassword, ...rest } = inputValues;
-        const newUser: NewUser = rest;
+        const { confirmPassword, ...restAccount } = inputValuesAccount;
+        const newUser: NewUser = {
+            ...restAccount,
+            ...inputValuesProfile,
+        };
 
         //Function posts new user with API call
         try {
@@ -69,7 +95,8 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
             loginDialogRef.current?.showModal();
 
             //Reset form values
-            setInputValues(initialValues);
+            setInputValuesAccount(initialValuesAccount);
+            setInputValuesProfile(initialValuesProfile);
             setCoverImg(undefined);
             setCoverImgUrl(undefined);
             setProfileImg(undefined);
@@ -101,15 +128,15 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
                     {signUpStep === "account" && (
                         <CreateAccount
                             setSignUpStep={setSignUpStep}
-                            handleInputChange={handleInputChange}
-                            inputValues={inputValues}
+                            handleInputChangeAccount={handleInputChangeAccount}
+                            inputValuesAccount={inputValuesAccount}
                         />
                     )}
                     {signUpStep === "profile" && (
                         <CreateProfile
                             setSignUpStep={setSignUpStep}
-                            handleInputChange={handleInputChange}
-                            inputValues={inputValues}
+                            handleInputChangeProfile={handleInputChangeProfile}
+                            inputValuesProfile={inputValuesProfile}
                         />
                     )}
                     {signUpStep === "profileImage" && (

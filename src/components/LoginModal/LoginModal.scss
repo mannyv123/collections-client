@@ -44,13 +44,8 @@
         font-size: 1rem;
         border-radius: 0.5rem;
         padding: 0.5rem;
-        border: none;
         background-color: $input-bg;
         font-family: $primary-font;
-
-        &:first-of-type {
-            margin-bottom: 1rem;
-        }
     }
 
     &__submit {

@@ -1,14 +1,36 @@
-import { FormEvent } from "react";
+import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import "./CreateAccount.scss";
-import { FormTextInputs } from "../../types/types";
+import { FormTextInputs, FormTextInputsAccount } from "../../types/types";
 
 interface CreateAccountProps {
     setSignUpStep(step: string): void;
-    handleInputChange(event: FormEvent): void;
-    inputValues: FormTextInputs;
+    handleInputChangeAccount(event: ChangeEvent): void;
+    inputValuesAccount: FormTextInputsAccount;
 }
 
-function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: CreateAccountProps): JSX.Element {
+function CreateAccount({
+    setSignUpStep,
+    handleInputChangeAccount,
+    inputValuesAccount,
+}: CreateAccountProps): JSX.Element {
+    const [isBlank, setIsBlank] = useState(true);
+
+    const checkIsBlank = () => {
+        let result = false;
+        for (const [_key, value] of Object.entries(inputValuesAccount)) {
+            if (value === "") {
+                result = true;
+            }
+        }
+        if (result) return setIsBlank(true);
+
+        return setIsBlank(false);
+    };
+
+    useEffect(() => {
+        checkIsBlank();
+    }, [inputValuesAccount]);
+
     return (
         <div className="create-account">
             <div className="create-account__form-inputs">
@@ -20,8 +42,8 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
                     id="setUsername"
                     placeholder="Username"
                     className="create-account__input"
-                    onChange={handleInputChange}
-                    value={inputValues.username}
+                    onChange={handleInputChangeAccount}
+                    value={inputValuesAccount.username}
                 />
                 <label htmlFor="setPassword">Create a password:</label>
                 <input
@@ -30,8 +52,8 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
                     id="setPassword"
                     placeholder="Password"
                     className="create-account__input"
-                    onChange={handleInputChange}
-                    value={inputValues.password}
+                    onChange={handleInputChangeAccount}
+                    value={inputValuesAccount.password}
                 />
                 <label htmlFor="confirmPassword">Confirm your password:</label>
                 <input
@@ -40,8 +62,8 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
                     id="confirmPassword"
                     placeholder="Confirm password"
                     className="create-account__input"
-                    onChange={handleInputChange}
-                    value={inputValues.confirmPassword}
+                    onChange={handleInputChangeAccount}
+                    value={inputValuesAccount.confirmPassword}
                 />
                 <label htmlFor="email">Enter your email:</label>
                 <input
@@ -50,12 +72,17 @@ function CreateAccount({ setSignUpStep, handleInputChange, inputValues }: Create
                     id="email"
                     placeholder="Email"
                     className="create-account__input"
-                    onChange={handleInputChange}
-                    value={inputValues.email}
+                    onChange={handleInputChangeAccount}
+                    value={inputValuesAccount.email}
                 />
             </div>
 
-            <button type="button" className="create-account__next" onClick={() => setSignUpStep("profile")}>
+            <button
+                type="button"
+                className="create-account__next"
+                onClick={() => setSignUpStep("profile")}
+                disabled={isBlank}
+            >
                 Next
             </button>
         </div>
