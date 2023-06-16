@@ -1,15 +1,35 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link, useNavigate, NavLink } from "react-router-dom";
 import "./PageHeader.scss";
 import LoginModal from "../LoginModal/LoginModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
 import { useAuth } from "../../utils/authContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+interface Username {
+    username: string;
+}
 
 function PageHeader(): JSX.Element {
+    const [usernamesList, setUsernamesList] = useState<Username[]>([]);
     const loginDialogRef = useRef<HTMLDialogElement>(null);
     const signUpDialogRef = useRef<HTMLDialogElement>(null);
     const navigate = useNavigate();
     const { isLoggedIn, handleLogout, user } = useAuth();
+
+    const notify = () =>
+        toast.success("Account Created!", {
+            isLoading: false,
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+        });
 
     const handleUserLogout = () => {
         handleLogout();
@@ -65,8 +85,17 @@ function PageHeader(): JSX.Element {
                     </ul>
                 </nav>
             </header>
-            <LoginModal loginDialogRef={loginDialogRef} />
-            <SignUpModal signUpDialogRef={signUpDialogRef} loginDialogRef={loginDialogRef} />
+            <LoginModal
+                loginDialogRef={loginDialogRef}
+                usernamesList={usernamesList}
+                setUsernamesList={setUsernamesList}
+            />
+            <SignUpModal
+                signUpDialogRef={signUpDialogRef}
+                loginDialogRef={loginDialogRef}
+                notify={notify}
+                setUsernamesList={setUsernamesList}
+            />
         </>
     );
 }
