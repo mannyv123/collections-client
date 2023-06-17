@@ -1,10 +1,9 @@
 import { ChangeEvent, FormEvent, RefObject, useState, Dispatch, SetStateAction } from "react";
-import { useNavigate } from "react-router-dom";
 import "./SignUpModal.scss";
 import CreateAccount from "../CreateAccount/CreateAccount";
 import CreateProfile from "../CreateProfile/CreateProfile";
 import CreateProfileImages from "../CreateProfileImages/CreateProfileImages";
-import { FormTextInputs, NewUser } from "../../types/types";
+import { NewUser } from "../../types/types";
 import { MdClose } from "react-icons/md";
 import { createUser, getAllUsernames } from "../../utils/api";
 import { Id, toast, ToastContainer } from "react-toastify";
@@ -13,24 +12,12 @@ import { AxiosResponse } from "axios";
 interface SignUpModalProps {
     signUpDialogRef: RefObject<HTMLDialogElement>;
     loginDialogRef: RefObject<HTMLDialogElement>;
-    notify: () => Id;
     setUsernamesList: Dispatch<SetStateAction<Username[]>>;
 }
 
 interface Username {
     username: string;
 }
-
-const initialValues: FormTextInputs = {
-    username: "",
-    password: "",
-    confirmPassword: "",
-    email: "",
-    first_name: "",
-    last_name: "",
-    about: "",
-    setup: "",
-};
 
 const initialValuesAccount = {
     username: "",
@@ -46,12 +33,7 @@ const initialValuesProfile = {
     setup: "",
 };
 
-function SignUpModal({
-    signUpDialogRef,
-    loginDialogRef,
-    notify,
-    setUsernamesList,
-}: SignUpModalProps): JSX.Element {
+function SignUpModal({ signUpDialogRef, loginDialogRef, setUsernamesList }: SignUpModalProps): JSX.Element {
     const [signUpStep, setSignUpStep] = useState<string>("account");
 
     const [inputValuesAccount, setInputValuesAccount] = useState(initialValuesAccount); //tracks form text inputs for Account
@@ -61,8 +43,6 @@ function SignUpModal({
     const [coverImgUrl, setCoverImgUrl] = useState<string>(); //tracks temporary url for cover img preview
     const [profileImg, setProfileImg] = useState<File>(); //tracks file data for profile img
     const [profileImgUrl, setProfileImgUrl] = useState<string>(); //tracks temporary url for profile img preview
-
-    const navigate = useNavigate();
 
     //Handles form input values for Account
     const handleInputChangeAccount = (event: ChangeEvent<HTMLInputElement>) => {
@@ -114,7 +94,7 @@ function SignUpModal({
                 autoClose: 2000,
                 hideProgressBar: false,
             });
-            // notify();
+
             await getAllUsernames((response: AxiosResponse) => {
                 setTimeout(() => {
                     signUpDialogRef.current?.close();

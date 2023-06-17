@@ -1,36 +1,26 @@
-import { useRef, useState } from "react";
-import { Link, useNavigate, NavLink } from "react-router-dom";
+// Styling
 import "./PageHeader.scss";
+import "react-toastify/dist/ReactToastify.css";
+// Components
 import LoginModal from "../LoginModal/LoginModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
+// Hooks and Elements
+import { useRef, useState } from "react";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 import { useAuth } from "../../utils/authContext";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 interface Username {
     username: string;
 }
 
 function PageHeader(): JSX.Element {
-    const [usernamesList, setUsernamesList] = useState<Username[]>([]);
-    const loginDialogRef = useRef<HTMLDialogElement>(null);
-    const signUpDialogRef = useRef<HTMLDialogElement>(null);
     const navigate = useNavigate();
-    const { isLoggedIn, handleLogout, user } = useAuth();
+    const [usernamesList, setUsernamesList] = useState<Username[]>([]); //Holds listing of current usernames for validation when logging in and after creating new user
+    const loginDialogRef = useRef<HTMLDialogElement>(null); //Ref to Login Modal
+    const signUpDialogRef = useRef<HTMLDialogElement>(null); //Ref to Sign Up Modal
+    const { isLoggedIn, handleLogout, user } = useAuth(); //Auth context; Conditionnally render components based on logged in status
 
-    const notify = () =>
-        toast.success("Account Created!", {
-            isLoading: false,
-            position: "top-center",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "light",
-        });
-
+    //Removes logged in user from local storage and navigates back to home page
     const handleUserLogout = () => {
         handleLogout();
         navigate("/");
@@ -93,7 +83,6 @@ function PageHeader(): JSX.Element {
             <SignUpModal
                 signUpDialogRef={signUpDialogRef}
                 loginDialogRef={loginDialogRef}
-                notify={notify}
                 setUsernamesList={setUsernamesList}
             />
         </>
