@@ -1,4 +1,4 @@
-import { FormEvent, RefObject, useEffect, useState } from "react";
+import { Dispatch, FormEvent, RefObject, SetStateAction, useEffect, useState } from "react";
 import "./LoginModal.scss";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../utils/authContext";
@@ -6,12 +6,14 @@ import { MdClose } from "react-icons/md";
 import { getAllUsernames } from "../../utils/api";
 import { AxiosResponse } from "axios";
 
-interface Username {
-    username: string;
-}
-
 interface LoginModalProps {
     loginDialogRef: RefObject<HTMLDialogElement>;
+    usernamesList: Username[];
+    setUsernamesList: Dispatch<SetStateAction<Username[]>>;
+}
+
+interface Username {
+    username: string;
 }
 
 const initialValues = {
@@ -24,10 +26,10 @@ const isErrorInitial = {
     password: false,
 };
 
-function LoginModal({ loginDialogRef }: LoginModalProps): JSX.Element {
+function LoginModal({ loginDialogRef, usernamesList, setUsernamesList }: LoginModalProps): JSX.Element {
     const navigate = useNavigate();
     const [loginInputs, setLoginInputs] = useState(initialValues);
-    const [usernamesList, setUsernamesList] = useState<Username[]>([]);
+
     const [isError, setIsError] = useState(isErrorInitial);
     const [errorMsg, setErrorMsg] = useState("");
     const { handleLogin } = useAuth();

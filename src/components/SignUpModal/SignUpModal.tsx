@@ -1,27 +1,23 @@
-import { ChangeEvent, FormEvent, RefObject, useState } from "react";
+import { ChangeEvent, FormEvent, RefObject, useState, Dispatch, SetStateAction } from "react";
 import "./SignUpModal.scss";
 import CreateAccount from "../CreateAccount/CreateAccount";
 import CreateProfile from "../CreateProfile/CreateProfile";
 import CreateProfileImages from "../CreateProfileImages/CreateProfileImages";
-import { FormTextInputs, NewUser } from "../../types/types";
+import { NewUser } from "../../types/types";
 import { MdClose } from "react-icons/md";
-import { createUser } from "../../utils/api";
+import { createUser, getAllUsernames } from "../../utils/api";
+import { Id, toast, ToastContainer } from "react-toastify";
+import { AxiosResponse } from "axios";
 
 interface SignUpModalProps {
     signUpDialogRef: RefObject<HTMLDialogElement>;
     loginDialogRef: RefObject<HTMLDialogElement>;
+    setUsernamesList: Dispatch<SetStateAction<Username[]>>;
 }
 
-const initialValues: FormTextInputs = {
-    username: "",
-    password: "",
-    confirmPassword: "",
-    email: "",
-    first_name: "",
-    last_name: "",
-    about: "",
-    setup: "",
-};
+interface Username {
+    username: string;
+}
 
 const initialValuesAccount = {
     username: "",
@@ -37,7 +33,7 @@ const initialValuesProfile = {
     setup: "",
 };
 
-function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX.Element {
+function SignUpModal({ signUpDialogRef, loginDialogRef, setUsernamesList }: SignUpModalProps): JSX.Element {
     const [signUpStep, setSignUpStep] = useState<string>("account");
 
     const [inputValuesAccount, setInputValuesAccount] = useState(initialValuesAccount); //tracks form text inputs for Account
@@ -89,10 +85,24 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
 
         //Function posts new user with API call
         try {
-            const response = await createUser(newUser, coverImg, profileImg);
-            console.log(response);
-            signUpDialogRef.current?.close();
-            loginDialogRef.current?.showModal();
+            const id = toast.loading("Please wait...");
+            await createUser(newUser, coverImg, profileImg);
+            toast.update(id, {
+                type: "success",
+                render: "Account Created!",
+                isLoading: false,
+                autoClose: 2000,
+                hideProgressBar: false,
+            });
+
+            await getAllUsernames((response: AxiosResponse) => {
+                setTimeout(() => {
+                    signUpDialogRef.current?.close();
+                    setUsernamesList(response.data);
+                    loginDialogRef.current?.showModal();
+                    setSignUpStep("account");
+                }, 3000);
+            });
 
             //Reset form values
             setInputValuesAccount(initialValuesAccount);
@@ -101,58 +111,71 @@ function SignUpModal({ signUpDialogRef, loginDialogRef }: SignUpModalProps): JSX
             setCoverImgUrl(undefined);
             setProfileImg(undefined);
             setProfileImgUrl(undefined);
-            setSignUpStep("account");
         } catch (error) {
             console.error(error);
         }
     };
 
     return (
-        <dialog ref={signUpDialogRef} className="signup">
-            <div className="signup__container">
-                <MdClose
-                    onClick={() => {
-                        setSignUpStep("account");
-                        signUpDialogRef.current?.close();
-                    }}
-                    className="signup__close"
+        <>
+            <dialog ref={signUpDialogRef} className="signup">
+                <ToastContainer
+                    position="top-center"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="light"
                 />
+                <div className="signup__container">
+                    <MdClose
+                        onClick={() => {
+                            setSignUpStep("account");
+                            signUpDialogRef.current?.close();
+                        }}
+                        className="signup__close"
+                    />
 
-                <h1 className="signup__title">Sign Up</h1>
-                <form
-                    action="submit"
-                    className="signup__form"
-                    onSubmit={handleSignUpFormSubmit}
-                    encType="multipart/form-data"
-                >
-                    {signUpStep === "account" && (
-                        <CreateAccount
-                            setSignUpStep={setSignUpStep}
-                            handleInputChangeAccount={handleInputChangeAccount}
-                            inputValuesAccount={inputValuesAccount}
-                        />
-                    )}
-                    {signUpStep === "profile" && (
-                        <CreateProfile
-                            setSignUpStep={setSignUpStep}
-                            handleInputChangeProfile={handleInputChangeProfile}
-                            inputValuesProfile={inputValuesProfile}
-                        />
-                    )}
-                    {signUpStep === "profileImage" && (
-                        <CreateProfileImages
-                            setSignUpStep={setSignUpStep}
-                            handleCoverImg={handleCoverImg}
-                            coverImg={coverImg}
-                            coverImgUrl={coverImgUrl}
-                            handleProfileImg={handleProfileImg}
-                            profileImg={profileImg}
-                            profileImgUrl={profileImgUrl}
-                        />
-                    )}
-                </form>
-            </div>
-        </dialog>
+                    <h1 className="signup__title">Sign Up</h1>
+                    <form
+                        action="submit"
+                        className="signup__form"
+                        onSubmit={handleSignUpFormSubmit}
+                        encType="multipart/form-data"
+                    >
+                        {signUpStep === "account" && (
+                            <CreateAccount
+                                setSignUpStep={setSignUpStep}
+                                handleInputChangeAccount={handleInputChangeAccount}
+                                inputValuesAccount={inputValuesAccount}
+                            />
+                        )}
+                        {signUpStep === "profile" && (
+                            <CreateProfile
+                                setSignUpStep={setSignUpStep}
+                                handleInputChangeProfile={handleInputChangeProfile}
+                                inputValuesProfile={inputValuesProfile}
+                            />
+                        )}
+                        {signUpStep === "profileImage" && (
+                            <CreateProfileImages
+                                setSignUpStep={setSignUpStep}
+                                handleCoverImg={handleCoverImg}
+                                coverImg={coverImg}
+                                coverImgUrl={coverImgUrl}
+                                handleProfileImg={handleProfileImg}
+                                profileImg={profileImg}
+                                profileImgUrl={profileImgUrl}
+                            />
+                        )}
+                    </form>
+                </div>
+            </dialog>
+        </>
     );
 }
 

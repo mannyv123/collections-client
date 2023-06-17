@@ -1,16 +1,26 @@
-import { useRef } from "react";
-import { Link, useNavigate, NavLink } from "react-router-dom";
+// Styling
 import "./PageHeader.scss";
+import "react-toastify/dist/ReactToastify.css";
+// Components
 import LoginModal from "../LoginModal/LoginModal";
 import SignUpModal from "../SignUpModal/SignUpModal";
+// Hooks and Elements
+import { useRef, useState } from "react";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 import { useAuth } from "../../utils/authContext";
 
-function PageHeader(): JSX.Element {
-    const loginDialogRef = useRef<HTMLDialogElement>(null);
-    const signUpDialogRef = useRef<HTMLDialogElement>(null);
-    const navigate = useNavigate();
-    const { isLoggedIn, handleLogout, user } = useAuth();
+interface Username {
+    username: string;
+}
 
+function PageHeader(): JSX.Element {
+    const navigate = useNavigate();
+    const [usernamesList, setUsernamesList] = useState<Username[]>([]); //Holds listing of current usernames for validation when logging in and after creating new user
+    const loginDialogRef = useRef<HTMLDialogElement>(null); //Ref to Login Modal
+    const signUpDialogRef = useRef<HTMLDialogElement>(null); //Ref to Sign Up Modal
+    const { isLoggedIn, handleLogout, user } = useAuth(); //Auth context; Conditionnally render components based on logged in status
+
+    //Removes logged in user from local storage and navigates back to home page
     const handleUserLogout = () => {
         handleLogout();
         navigate("/");
@@ -65,8 +75,16 @@ function PageHeader(): JSX.Element {
                     </ul>
                 </nav>
             </header>
-            <LoginModal loginDialogRef={loginDialogRef} />
-            <SignUpModal signUpDialogRef={signUpDialogRef} loginDialogRef={loginDialogRef} />
+            <LoginModal
+                loginDialogRef={loginDialogRef}
+                usernamesList={usernamesList}
+                setUsernamesList={setUsernamesList}
+            />
+            <SignUpModal
+                signUpDialogRef={signUpDialogRef}
+                loginDialogRef={loginDialogRef}
+                setUsernamesList={setUsernamesList}
+            />
         </>
     );
 }
