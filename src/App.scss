@@ -1,0 +1,59 @@
+@use "./styles/partials/variables" as *;
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    font-size: 1rem;
+    font-family: $primary-font;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    cursor: pointer;
+    background-color: #fff;
+    font-size: 1rem;
+    font-family: $primary-font;
+}
+
+input {
+    border: none;
+}
+
+// .active {
+//     background-color: $light-blue;
+// }
+
+.input {
+    &__container {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+    }
+
+    //Error states for inputs
+    &__error {
+        outline: 2px solid $red;
+    }
+
+    &__error-msg {
+        color: $red;
+        font-size: 0.75rem;
+        text-align: center;
+
+        &--add {
+            text-align: left;
+        }
+    }
+}

@@ -1,0 +1,49 @@
+@use "../../styles/partials/variables" as *;
+
+.switch {
+    position: absolute;
+    z-index: 1;
+    top: 5%;
+    right: 5%;
+
+    cursor: pointer;
+
+    &__container {
+        width: 4.5rem;
+        height: fit-content;
+        border: 1px solid black;
+        border-radius: 1.5rem;
+        padding: 0.6rem;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+    }
+
+    &__item {
+        position: absolute;
+        background-color: $red;
+        width: 1.75rem;
+        height: 1.75rem;
+        border-radius: 50%;
+
+        &--map {
+            transform: translateX(-18%);
+            transition: transform 0.5s ease-in-out; /* Animation transition */
+        }
+
+        &--list {
+            transform: translateX(100%);
+            transition: transform 0.5s ease-in-out; /* Animation transition */
+        }
+    }
+
+    &__input {
+        display: none;
+    }
+
+    &__icon {
+        transform: scale(1.5);
+    }
+}

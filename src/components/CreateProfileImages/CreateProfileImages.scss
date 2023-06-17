@@ -1,0 +1,97 @@
+@use "../../styles/partials/variables" as *;
+
+.profile-imgs {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &__title {
+        margin-bottom: 1.5rem;
+    }
+
+    &__uploads-container {
+        position: relative;
+        width: 100%;
+        flex-grow: 1;
+    }
+
+    &__img-input {
+        width: 0.0063rem;
+        height: 0.0063rem;
+        opacity: 0;
+        position: absolute;
+    }
+
+    &__cover-img-container {
+        width: 100%;
+        height: 8rem;
+        background-color: grey; //temporary
+        cursor: pointer;
+
+        border-radius: 0.5rem;
+        overflow: hidden;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__cover-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    &__profile-img-container {
+        width: 6rem;
+        height: 6rem;
+        background-color: lightblue; //temporary
+        border-radius: 50%;
+        overflow: hidden;
+        cursor: pointer;
+
+        position: absolute;
+        top: 6%;
+        left: 5%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__profile-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    &__btn-container {
+        margin-top: 1rem;
+        display: flex;
+        gap: 2rem;
+    }
+
+    &__btn {
+        width: 50%;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.5rem 3rem;
+        background-color: $light-blue;
+        color: black;
+
+        &:hover {
+            background-color: $dark-blue;
+            color: white;
+        }
+
+        &:disabled {
+            background-color: $white;
+            color: grey;
+            outline: 1px solid grey;
+        }
+    }
+}

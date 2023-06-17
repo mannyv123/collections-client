@@ -1,0 +1,69 @@
+@use "../../styles/partials/variables" as *;
+
+.view-post {
+    position: absolute;
+    height: 100%;
+    width: 30%;
+    z-index: 2;
+    padding: 1rem;
+    background-color: rgba($color: $light-blue, $alpha: 20%);
+    overflow: hidden;
+    transform: translateX(-100%);
+
+    &__component {
+        &--slide-in {
+            transform: translateX(0); /* Initial position */
+            transition: transform 0.5s ease-in-out; /* Animation transition */
+        }
+    }
+
+    &__username {
+        margin: 0.5rem 0;
+        cursor: pointer;
+        border-radius: 0.5rem;
+        padding: 0.25rem 1rem;
+        width: fit-content;
+
+        &:hover {
+            background-color: $dark-blue;
+            color: $white;
+        }
+    }
+
+    &__username-link {
+        text-decoration: none;
+        color: black;
+    }
+
+    &__imgs-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        height: 95%;
+    }
+
+    &__selected-img {
+        width: 100%;
+        height: 15rem;
+        object-fit: cover;
+        cursor: pointer;
+    }
+
+    &__other-imgs-container {
+        background-color: $dark-blue;
+        overflow-y: auto;
+
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+        grid-gap: 0;
+    }
+
+    &__other-imgs {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+}
