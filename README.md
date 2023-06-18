@@ -9,6 +9,8 @@ Clicking on a marker brings up the related photo as a popup, as well as the full
 
 ## Demo
 
+Check out the deployed site: https://project-collections.netlify.app/
+
 ![collections-demo](https://github.com/mannyv123/collections-client/assets/123426666/e46339d4-1134-4747-8f16-d67b400e73b5)
 
 ## Tech Stack
