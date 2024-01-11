@@ -35,6 +35,27 @@ input {
 //     background-color: $light-blue;
 // }
 
+.desktop {
+    display: none;
+
+    @media screen and (min-width: 1024px) {
+        display: block;
+    }
+}
+
+.mobile {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem;
+
+    @media screen and (min-width: 1024px) {
+        display: none;
+    }
+}
+
 .input {
     &__container {
         display: flex;
