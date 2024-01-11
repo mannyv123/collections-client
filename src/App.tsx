@@ -15,17 +15,25 @@ if (!API_URL) {
 function App(): JSX.Element {
     return (
         <div className="App">
-            <BrowserRouter>
-                <AuthProvider>
-                    <PageHeader />
-                    <Routes>
-                        <Route path="/" element={<LandingPage />} />
-                        <Route path="/home" element={<Navigate to="/" />} />
-                        <Route path="/:username/*" element={<ProfilePage />} />
-                        <Route path="/:username/add" element={<AddCollection />} />
-                    </Routes>
-                </AuthProvider>
-            </BrowserRouter>
+            <div className="mobile">
+                <p className="mobile__message">
+                    Note that Collections is not available for mobile or tablet formats. Please use a Desktop
+                    to access the application.
+                </p>
+            </div>
+            <div className="desktop">
+                <BrowserRouter>
+                    <AuthProvider>
+                        <PageHeader />
+                        <Routes>
+                            <Route path="/" element={<LandingPage />} />
+                            <Route path="/home" element={<Navigate to="/" />} />
+                            <Route path="/:username/*" element={<ProfilePage />} />
+                            <Route path="/:username/add" element={<AddCollection />} />
+                        </Routes>
+                    </AuthProvider>
+                </BrowserRouter>
+            </div>
         </div>
     );
 }
